@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.GaussianBlur?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="560.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="theatre.Theatre">
+   <children>
+      <AnchorPane style="-fx-background-color: #ffffffff;">
+         <children>
+            <Label alignment="CENTER" layoutX="309.0" prefHeight="81.0" prefWidth="960.0" style="-fx-background-color: #000000;" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font name="System Bold" size="55.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutY="3.0" prefHeight="81.0" prefWidth="699.0" styleClass="branner" stylesheets="@../picture/background/setBackground.css" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font name="System Bold" size="55.0" />
+               </font>
+               <effect>
+                  <GaussianBlur>
+                     <input>
+                        <ColorAdjust brightness="-0.39" saturation="1.0" />
+                     </input></GaussianBlur>
+               </effect>
+            </Label>
+            <Label alignment="CENTER" layoutY="3.0" prefHeight="81.0" prefWidth="960.0" text="KU Cinema" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <font>
+                  <Font name="System Bold" size="55.0" />
+               </font>
+               <effect>
+                  <Bloom threshold="0.0" />
+               </effect>
+            </Label>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+      <AnchorPane prefHeight="391.0" prefWidth="889.0">
+         <children>
+            <ScrollPane hbarPolicy="NEVER" prefHeight="382.0" prefWidth="889.0" style="-fx-background-color: #000000;" stylesheets="@../picture/poster/setPoster.css" vbarPolicy="NEVER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+              <content>
+                  <VBox prefHeight="381.0" prefWidth="889.0">
+                     <children>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="390.0" prefWidth="889.0">
+                           <children>
+                              <Label layoutX="28.0" layoutY="22.0" prefHeight="381.0" prefWidth="861.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <Label prefHeight="382.0" prefWidth="889.0" styleClass="backgroundShowMovies" stylesheets="@../picture/background/setBackground.css" text="Label">
+                                 <effect>
+                                    <GaussianBlur radius="21.81" />
+                                 </effect>
+                              </Label>
+                              <ImageView fitHeight="284.0" fitWidth="234.0" layoutX="50.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="50.0">
+                                 <image>
+                                    <Image url="@../picture/poster/spiderman-homeless.jpg" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="284.0" fitWidth="234.0" layoutX="342.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="342.0" AnchorPane.rightAnchor="342.0">
+                                 <image>
+                                    <Image url="@../picture/poster/spiderman-homeless.jpg" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="286.0" fitWidth="205.0" layoutX="634.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="50.0">
+                                 <image>
+                                    <Image url="@../picture/poster/spiderman-homeless.jpg" />
+                                 </image>
+                              </ImageView>
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="51.0" layoutY="312.0" prefHeight="40.0" prefWidth="204.0" text="Spider-man: Homeless" textFill="WHITE" AnchorPane.leftAnchor="50.0">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font></Label>
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="634.0" layoutY="312.0" prefHeight="40.0" prefWidth="204.0" text="Spider-man: Homeless" textFill="WHITE" AnchorPane.rightAnchor="50.0">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font></Label>
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="343.0" layoutY="312.0" prefHeight="40.0" prefWidth="204.0" text="Spider-man: Homeless" textFill="WHITE" AnchorPane.leftAnchor="342.0" AnchorPane.rightAnchor="342.0">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font></Label>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
+              </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="38.0" prefWidth="889.0" style="-fx-background-color: #2471A3;">
+         <children>
+            <HBox prefHeight="94.0" prefWidth="331.0" AnchorPane.leftAnchor="20.0">
+               <children>
+                  <Label fx:id="showingOption" alignment="CENTER" onMouseClicked="#mouseClickOnLabel" onMouseEntered="#mouseEnterOnLabel" onMouseExited="#mouseExitOnLabel" prefHeight="100.0" prefWidth="127.0" style="-fx-background-color: #1F618D;" text="SHOWING" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <Lighting diffuseConstant="2.0" specularConstant="0.0">
+                           <bumpInput>
+                              <Shadow blurType="GAUSSIAN" />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Label>
+                  <Label prefHeight="100.0" prefWidth="20.0" />
+                  <Label fx:id="comingSoonOption" alignment="CENTER" onMouseClicked="#mouseClickOnLabel" onMouseEntered="#mouseEnterOnLabel" onMouseExited="#mouseExitOnLabel" prefHeight="100.0" prefWidth="184.0" text="COMING SOON" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <Lighting diffuseConstant="2.0" specularConstant="0.0">
+                           <bumpInput>
+                              <Shadow blurType="GAUSSIAN" />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="TOP_RIGHT" layoutX="696.0" prefHeight="94.0" prefWidth="234.0" AnchorPane.rightAnchor="20.0">
+               <children>
+                  <Label fx:id="accountOption" alignment="CENTER" onMouseClicked="#mouseClickOnLabel" onMouseEntered="#mouseEnterOnLabel" onMouseExited="#mouseExitOnLabel" prefHeight="100.0" prefWidth="124.0" text="ACCOUNT" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <Lighting diffuseConstant="2.0" specularConstant="0.0">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Label>
+                  <Label prefHeight="100.0" prefWidth="20.0" />
+                  <Label fx:id="logInOption" alignment="CENTER" onMouseClicked="#mouseClickOnLabel" onMouseEntered="#mouseEnterOnLabel" onMouseExited="#mouseExitOnLabel" prefHeight="100.0" prefWidth="100.0" text="LOG IN" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <Lighting diffuseConstant="2.0" specularConstant="0.0">
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+   </children>
+   <effect>
+      <ColorAdjust />
+   </effect>
+</VBox>
