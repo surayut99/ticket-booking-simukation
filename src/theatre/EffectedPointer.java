@@ -14,7 +14,7 @@ public class EffectedPointer{
         Lighting lighting = (Lighting) effectedLabel.getEffect();
 
         Timeline timeline = new Timeline();
-        KeyValue keyValue = new KeyValue(lighting.diffuseConstantProperty(), value, Interpolator.EASE_IN);
+        KeyValue keyValue = new KeyValue(lighting.diffuseConstantProperty(), value, Interpolator.EASE_OUT);
         KeyFrame keyFrame = new KeyFrame(Duration.millis(250), keyValue);
         timeline.getKeyFrames().add(keyFrame);
         timeline.play();

@@ -34,10 +34,11 @@
                   <GaussianBlur>
                      <input>
                         <ColorAdjust brightness="-0.39" saturation="1.0" />
-                     </input></GaussianBlur>
+                     </input>
+                  </GaussianBlur>
                </effect>
             </Label>
-            <Label alignment="CENTER" layoutY="3.0" prefHeight="81.0" prefWidth="960.0" text="KU Cinema" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <Label alignment="CENTER" layoutY="3.0" prefHeight="81.0" prefWidth="960.0" text="SAMPLE CINEMA" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <font>
                   <Font name="System Bold" size="55.0" />
                </font>
@@ -54,7 +55,7 @@
          <children>
             <ScrollPane hbarPolicy="NEVER" prefHeight="382.0" prefWidth="889.0" style="-fx-background-color: #000000;" stylesheets="@../picture/poster/setPoster.css" vbarPolicy="NEVER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
               <content>
-                  <VBox prefHeight="381.0" prefWidth="889.0">
+                  <VBox fx:id="vBoxshow" prefHeight="381.0" prefWidth="889.0">
                      <children>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="390.0" prefWidth="889.0">
                            <children>
@@ -66,31 +67,52 @@
                               </Label>
                               <ImageView fitHeight="284.0" fitWidth="234.0" layoutX="50.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="50.0">
                                  <image>
-                                    <Image url="@../picture/poster/spiderman-homeless.jpg" />
+                                    <Image url="@../picture/poster/spider-man-homeless.jpg" />
                                  </image>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
                               </ImageView>
                               <ImageView fitHeight="284.0" fitWidth="234.0" layoutX="342.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="342.0" AnchorPane.rightAnchor="342.0">
                                  <image>
-                                    <Image url="@../picture/poster/spiderman-homeless.jpg" />
+                                    <Image url="@../picture/poster/inception.jpg" />
                                  </image>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
                               </ImageView>
                               <ImageView fitHeight="286.0" fitWidth="205.0" layoutX="634.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="50.0">
                                  <image>
-                                    <Image url="@../picture/poster/spiderman-homeless.jpg" />
+                                    <Image url="@../picture/poster/booty_and_the_beast.jpg" />
                                  </image>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
                               </ImageView>
                               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="51.0" layoutY="312.0" prefHeight="40.0" prefWidth="204.0" text="Spider-man: Homeless" textFill="WHITE" AnchorPane.leftAnchor="50.0">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
-                                 </font></Label>
-                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="634.0" layoutY="312.0" prefHeight="40.0" prefWidth="204.0" text="Spider-man: Homeless" textFill="WHITE" AnchorPane.rightAnchor="50.0">
+                                 </font>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="634.0" layoutY="312.0" prefHeight="40.0" prefWidth="204.0" text="Booty and the Beast" textFill="WHITE" AnchorPane.rightAnchor="50.0">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
-                                 </font></Label>
-                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="343.0" layoutY="312.0" prefHeight="40.0" prefWidth="204.0" text="Spider-man: Homeless" textFill="WHITE" AnchorPane.leftAnchor="342.0" AnchorPane.rightAnchor="342.0">
+                                 </font>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="343.0" layoutY="312.0" prefHeight="40.0" prefWidth="204.0" text="INCEPTION" textFill="WHITE" AnchorPane.leftAnchor="342.0" AnchorPane.rightAnchor="342.0">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
-                                 </font></Label>
+                                 </font>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                              </Label>
                            </children>
                         </AnchorPane>
                      </children>
