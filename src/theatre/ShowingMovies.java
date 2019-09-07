@@ -9,4 +9,8 @@ public class ShowingMovies extends Movies{
         super(title, length, locationPoster);
         this.come_inDate =come_inDate;
     }
+
+    public LocalDate getCome_inDate() {
+        return come_inDate;
+    }
 }

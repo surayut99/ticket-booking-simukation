@@ -11,20 +11,20 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Text;
 import javafx.util.Duration;
 
-public class StartingProgram {
+public class StartProgram {
 
-    @FXML Label clickToContinue, welcomeLabel;
+    @FXML Label clickToContinue, welcomeLabel, sampleText;
 
     @FXML StackPane stackPane;
 
     @FXML AnchorPane startAnchor;
 
-    @FXML Text sampleText;
-
     @FXML public void initialize() {
+        startAnchor.prefWidthProperty().bind(stackPane.widthProperty());
+        startAnchor.prefHeightProperty().bind(stackPane.heightProperty());
+
         FadeTransition fadeAnchor = new FadeTransition(Duration.seconds(1), startAnchor);
         fadeAnchor.setToValue(1);
         fadeAnchor.setDelay(Duration.seconds(1));
@@ -49,20 +49,19 @@ public class StartingProgram {
         });
 
 
-
     }
 
 
     @FXML public void clickOnAction(MouseEvent event) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("startTheatre.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
         Scene scene = clickToContinue.getScene();
 
         root.translateXProperty().set(scene.getWidth());
         stackPane.getChildren().add(root);
 
         Timeline timeline = new Timeline();
-        KeyValue keyValue = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_OUT);
-        KeyFrame keyFrame = new KeyFrame(Duration.millis(1500), keyValue);
+        KeyValue keyValue = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_IN);
+        KeyFrame keyFrame = new KeyFrame(Duration.millis(500), keyValue);
         timeline.getKeyFrames().add(keyFrame);
         timeline.play();
     }

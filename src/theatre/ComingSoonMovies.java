@@ -9,4 +9,8 @@ public class ComingSoonMovies extends Movies{
         super(title, length, locationPoster);
         this.comingSoonDate = come_inDate;
     }
+
+    public LocalDate getComingSoonDate() {
+        return comingSoonDate;
+    }
 }

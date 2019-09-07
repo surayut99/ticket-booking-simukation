@@ -1,8 +1,6 @@
 package theatre;
 
-import java.time.LocalDate;
-
-public class Movies extends Theatre {
+public class Movies extends HomePage {
     private String title;
     private String length;
     private String locationPoster;
