@@ -1,5 +1,7 @@
 package theatre;
 
+import theatre.movies.Movies;
+
 public class Account {
     private Movies currentSelectMovie;
 

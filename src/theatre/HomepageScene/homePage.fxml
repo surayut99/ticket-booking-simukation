@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainPane" prefHeight="733.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="theatre.HomePage">
+<AnchorPane fx:id="mainPane" prefHeight="851.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="theatre.HomepageScene.HomePage">
    <children>
       <VBox fx:id="mainBox" prefHeight="560.0" prefWidth="889.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -26,7 +26,7 @@
                         <Font name="System Bold" size="55.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" layoutY="3.0" prefHeight="81.0" prefWidth="699.0" styleClass="brander" stylesheets="@../picture/background/setBackground.css" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <Label alignment="CENTER" layoutY="3.0" prefHeight="81.0" prefWidth="699.0" styleClass="brander" stylesheets="@../../picture/background/setBackground.css" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <font>
                         <Font name="System Bold" size="55.0" />
                      </font>
@@ -51,13 +51,13 @@
                   <DropShadow />
                </effect>
             </AnchorPane>
-            <AnchorPane fx:id="showPart" prefHeight="725.0" prefWidth="889.0">
+            <AnchorPane fx:id="showPart" prefHeight="725.0" prefWidth="1024.0">
                <children>
-                  <ScrollPane hbarPolicy="NEVER" prefHeight="392.0" prefWidth="889.0" style="-fx-background-color: #000000;" stylesheets="@../picture/poster/setPoster.css" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <ScrollPane hbarPolicy="NEVER" prefHeight="392.0" prefWidth="889.0" style="-fx-background-color: #000000;" stylesheets="@../../picture/poster/setPoster.css" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <content>
-                        <VBox fx:id="vBoxshow" prefHeight="554.0" prefWidth="889.0" styleClass="background" stylesheets="@../picture/background/setBackground.css">
+                        <VBox fx:id="vBoxShow" prefHeight="676.0" prefWidth="1026.0" styleClass="background" stylesheets="@../../picture/background/setBackground.css">
                            <children>
-                              <AnchorPane fx:id="fadeStartBackground" prefHeight="556.0" prefWidth="889.0" style="-fx-background-color: #000000;" />
+                              <AnchorPane fx:id="fadeStartBackground" opacity="0.0" prefHeight="677.0" prefWidth="1026.0" style="-fx-background-color: #000000;" />
                            </children>
                         </VBox>
                     </content>

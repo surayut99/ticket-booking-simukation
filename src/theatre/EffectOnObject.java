@@ -3,6 +3,7 @@ package theatre;
 import javafx.animation.*;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.Lighting;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
@@ -49,6 +50,15 @@ public class EffectOnObject {
     }
 
     public void finishTransition() {
+    }
+
+    public void changeColorSelectedSeat(Node node) {
+        ColorAdjust colorAdjust = new ColorAdjust();
+        colorAdjust.setContrast(-1);
+        colorAdjust.setSaturation(1);
+        colorAdjust.setHue(0.6);
+
+        node.setEffect(colorAdjust);
     }
 
 

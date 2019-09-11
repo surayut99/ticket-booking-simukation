@@ -1,6 +1,6 @@
-package theatre;
+package theatre.movies;
 
-public class Movies extends HomePage {
+public class Movies{
     private String title;
     private String length;
     private String locationPoster;

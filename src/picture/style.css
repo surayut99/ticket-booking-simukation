@@ -32,3 +32,9 @@
     -fx-background-radius: 5;
     -fx-background-insets: 0;
 }
+
+.schedule {
+    -fx-background-color: linear-gradient(#FDC830,#F37335);
+    -fx-background-radius: 25;
+    -fx-background-insets: 0;
+}

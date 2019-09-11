@@ -1,4 +1,4 @@
-package theatre;
+package theatre.StartScene;
 
 import javafx.animation.*;
 import javafx.event.ActionEvent;
@@ -29,8 +29,8 @@ public class StartProgram {
         fadeAnchor.setToValue(1);
         fadeAnchor.setDelay(Duration.seconds(1));
 
-        FadeTransition fadeWelcom = new FadeTransition(Duration.seconds(0.5), welcomeLabel);
-        fadeWelcom.setToValue(1);
+        FadeTransition fadeWelcome = new FadeTransition(Duration.seconds(0.5), welcomeLabel);
+        fadeWelcome.setToValue(1);
 
         FadeTransition fadeSample = new FadeTransition(Duration.seconds(1), sampleText);
         fadeSample.setToValue(1);
@@ -39,7 +39,7 @@ public class StartProgram {
         fadeClick.setToValue(1);
 
         SequentialTransition sequentialTransition = new SequentialTransition();
-        sequentialTransition.getChildren().addAll(fadeAnchor, fadeWelcom, fadeSample, fadeClick);
+        sequentialTransition.getChildren().addAll(fadeAnchor, fadeWelcome, fadeSample, fadeClick);
         sequentialTransition.play();
         sequentialTransition.setOnFinished(new EventHandler<ActionEvent>() {
             @Override
@@ -53,14 +53,14 @@ public class StartProgram {
 
 
     @FXML public void clickOnAction(MouseEvent event) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../HomepageScene/homePage.fxml"));
         Scene scene = clickToContinue.getScene();
 
         root.translateXProperty().set(scene.getWidth());
         stackPane.getChildren().add(root);
 
         Timeline timeline = new Timeline();
-        KeyValue keyValue = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_IN);
+        KeyValue keyValue = new KeyValue(root.translateXProperty(), 200, Interpolator.EASE_IN);
         KeyFrame keyFrame = new KeyFrame(Duration.millis(500), keyValue);
         timeline.getKeyFrames().add(keyFrame);
         timeline.play();

@@ -1,4 +1,4 @@
-package theatre;
+package theatre.movies;
 
 import java.time.LocalDate;
 

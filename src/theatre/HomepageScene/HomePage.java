@@ -1,4 +1,4 @@
-package theatre;
+package theatre.HomepageScene;
 
 import javafx.animation.*;
 import javafx.collections.FXCollections;
@@ -11,7 +11,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
@@ -21,18 +20,27 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.stage.Stage;
 import javafx.util.Duration;
+import theatre.*;
+import theatre.MovieDetailScene.MovieDetail;
+import theatre.Schedule.Schedule;
+import theatre.ShowingSystem.ShowingSystem;
+import theatre.movies.ComingSoonMovies;
+import theatre.movies.Movies;
+import theatre.movies.ShowingMovies;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class HomePage {
     private Label preLabel;
     private EffectOnObject effectOnObject;
-    private ObservableList<Label> labelList = FXCollections.observableArrayList();
     private Movies selectedMovie;
+    private Schedule scheduler;
+    private ArrayList<ArrayList<ShowingSystem>> scheduleShowTimes;
+    private ArrayList<ArrayList<Movies>> sequenceMovieList;
 
     private ObservableList<Movies>collectShowingMovies = FXCollections.observableArrayList();
     private ObservableList<Movies>collectComingSoonMovies = FXCollections.observableArrayList();
@@ -46,16 +54,15 @@ public class HomePage {
     private ObservableList<Label>collectSoonTitle = FXCollections.observableArrayList();
 
     @FXML Label showingOption, comingSoonOption, accountOption, logInOption;
-    @FXML VBox vBoxshow;
+    @FXML VBox vBoxShow;
     @FXML AnchorPane fadeStartBackground, showPart, mainPane;
 
     @FXML public void initialize() {
-        vBoxshow.prefWidthProperty().bind(showPart.widthProperty());
+        vBoxShow.prefWidthProperty().bind(showPart.widthProperty());
         showPart.prefHeightProperty().bind(mainPane.heightProperty());
-        vBoxshow.prefHeightProperty().bind(showPart.heightProperty());
+        vBoxShow.prefHeightProperty().bind(showPart.heightProperty());
         fadeStartBackground.prefHeightProperty().bind(showPart.heightProperty());
 
-        labelList.addAll(showingOption, comingSoonOption, accountOption, logInOption);
         preLabel = showingOption;
         effectOnObject = new EffectOnObject();
 
@@ -63,6 +70,9 @@ public class HomePage {
         addComingSoonMovie();
         addShowingMoviesInRow();
         addSoonMoviesInRow();
+
+        addSequenceMovies();
+        addScheduleShowTimes();
 
         FadeTransition fadeBackground = new FadeTransition(Duration.seconds(1), fadeStartBackground);
         fadeBackground.setToValue(0);
@@ -72,6 +82,7 @@ public class HomePage {
             @Override
             public void handle(ActionEvent event) {
                 showMoviesOnTheatre();
+
             }
         });
     }
@@ -92,108 +103,109 @@ public class HomePage {
 
     @FXML public void mouseClickOnLabel(MouseEvent event) {
         Label effectedLabel = (Label) event.getSource();
+        if (effectedLabel == preLabel) {return;}
 
-        if (effectedLabel != preLabel && preLabel != null) {
-            preLabel.setStyle("-fx-background-color: null");
-            effectedLabel.setEffect(effectOnObject.clickAndchangLabelColor());
-            effectedLabel.setStyle("-fx-background-color: #1F618D;");
-            preLabel = effectedLabel;
-        }
+        if (preLabel == null) {preLabel = effectedLabel;}
 
-        else if (preLabel == null) {
-            preLabel = effectedLabel;
-            effectedLabel.setEffect(effectOnObject.clickAndchangLabelColor());
-            effectedLabel.setStyle("-fx-background-color: #1F618D;");
-        }
+        preLabel.setStyle("-fx-background-color: null");
+        preLabel = effectedLabel;
+        effectedLabel.setEffect(effectOnObject.clickAndchangLabelColor());
+        effectedLabel.setStyle("-fx-background-color: #1F618D;");
 
         if (effectedLabel == showingOption || effectedLabel == comingSoonOption) {
             showMoviesOnTheatre();
         }
 
         else if (effectedLabel == accountOption) {
-            showAccount();
+            showAccount(); //Wait to update
         }
 
         else {
-            showLogin();
+            showLogin(); //Wait to update
         }
-
-        preLabel = effectedLabel;
     }
 
-    @FXML public void mouseEnterOnPoster(MouseEvent event) {
-        ImageView effectedPoster = (ImageView) event.getSource();
+    @FXML public void mouseEnterOnObject(MouseEvent event) {
+        Node effectedNode = (Node) event.getSource();
         int index = -1;
-        ObservableList<Label> titleList = null;
-        if (!showingOption.getStyle().contains("null")) {
-            index = collectShowingPoster.indexOf(effectedPoster);
-            titleList = collectShowingTitle;
-        }
-        else {
-            index = collectSoonPoster.indexOf(effectedPoster);
-            titleList = collectSoonTitle;
+
+        ImageView effectedImage = null;
+        Label effectedLabel = null;
+
+        if (effectedNode.getClass() == ImageView.class) {
+            if (!showingOption.getStyle().contains("null")) {
+                index = collectShowingPoster.indexOf(effectedNode);
+                effectedImage = collectShowingPoster.get(index);
+                effectedLabel = collectShowingTitle.get(index);
+            }
+
+            else {
+                index = collectSoonPoster.indexOf(effectedNode);
+                effectedImage = collectSoonPoster.get(index);
+                effectedLabel = collectSoonTitle.get(index);
+            }
         }
 
-        effectOnObject.changeScaleOnSelectedNode(titleList.get(index), 1.1);
-        effectOnObject.changeScaleOnSelectedNode(effectedPoster, 1.1);
+        else if (effectedNode.getClass() == Label.class) {
+            if (!showingOption.getStyle().contains("null")) {
+                index = collectShowingTitle.indexOf(effectedNode);
+                effectedImage = collectShowingPoster.get(index);
+                effectedLabel = collectShowingTitle.get(index);
+            }
+
+            else {
+                index = collectSoonTitle.indexOf(effectedNode);
+                effectedImage = collectSoonPoster.get(index);
+                effectedLabel = collectSoonTitle.get(index);
+            }
+        }
+
+        effectOnObject.changeScaleOnSelectedNode(effectedLabel, 1.1);
+        effectOnObject.changeScaleOnSelectedNode(effectedImage, 1.1);
     }
 
-    @FXML public void mouseExitOffPoster(MouseEvent event) {
-        ImageView effectedPoster = (ImageView) event.getSource();
+    @FXML public void mouseExitOffObject(MouseEvent event) {
+        Node effectedNode = (Node) event.getSource();
         int index = -1;
-        ObservableList<Label> titleList = null;
-        if (!showingOption.getStyle().contains("null")) {
-            index = collectShowingPoster.indexOf(effectedPoster);
-            titleList = collectShowingTitle;
-        }
-        else {
-            index = collectSoonPoster.indexOf(effectedPoster);
-            titleList = collectSoonTitle;
-        }
 
-        effectOnObject.changeScaleOnSelectedNode(titleList.get(index), 1);
-        effectOnObject.changeScaleOnSelectedNode(effectedPoster, 1);
-    }
+        ImageView effectedImage = null;
+        Label effectedLabel = null;
 
-    @FXML public void mouseEnterOnTitle(MouseEvent event) {
-        Label effectedTitle = (Label) event.getSource();
-        int index = -1;
-        ObservableList<ImageView> posterList = null;
-        if (!showingOption.getStyle().contains("null")) {
-            index = collectShowingTitle.indexOf(effectedTitle);
-            posterList = collectShowingPoster;
-        }
-        else {
-            index = collectSoonTitle.indexOf(effectedTitle);
-            posterList = collectSoonPoster;
+        if (effectedNode.getClass() == ImageView.class) {
+            if (!showingOption.getStyle().contains("null")) {
+                index = collectShowingPoster.indexOf(effectedNode);
+                effectedImage = collectShowingPoster.get(index);
+                effectedLabel = collectShowingTitle.get(index);
+            }
+
+            else {
+                index = collectSoonPoster.indexOf(effectedNode);
+                effectedImage = collectSoonPoster.get(index);
+                effectedLabel = collectSoonTitle.get(index);
+            }
         }
 
-        effectOnObject.changeScaleOnSelectedNode(posterList.get(index), 1.1);
-        effectOnObject.changeScaleOnSelectedNode(effectedTitle, 1.1);
-    }
+        else if (effectedNode.getClass() == Label.class) {
+            if (!showingOption.getStyle().contains("null")) {
+                index = collectShowingTitle.indexOf(effectedNode);
+                effectedImage = collectShowingPoster.get(index);
+                effectedLabel = collectShowingTitle.get(index);
+            }
 
-    @FXML public void mouseExitOffTitle(MouseEvent event) {
-        Label effectedTitle = (Label) event.getSource();
-
-        int index = -1;
-        ObservableList<ImageView> posterList = null;
-        if (!showingOption.getStyle().contains("null")) {
-            index = collectShowingTitle.indexOf(effectedTitle);
-            posterList = collectShowingPoster;
-        }
-        else {
-            index = collectSoonTitle.indexOf(effectedTitle);
-            posterList = collectSoonPoster;
+            else {
+                index = collectSoonTitle.indexOf(effectedNode);
+                effectedImage = collectSoonPoster.get(index);
+                effectedLabel = collectSoonTitle.get(index);
+            }
         }
 
-        effectOnObject.changeScaleOnSelectedNode(posterList.get(index), 1);
-        effectOnObject.changeScaleOnSelectedNode(effectedTitle, 1);
+        effectOnObject.changeScaleOnSelectedNode(effectedLabel, 1);
+        effectOnObject.changeScaleOnSelectedNode(effectedImage, 1);
     }
 
 
     public void addShowingMovie() {
         LocalDate date = LocalDate.now();
-        String comingDate = "09/09/2019";
 
         collectShowingMovies.add(new ShowingMovies("Spider-Man: Homeless", "02:02:02", date, "picture/poster/spider-man-homeless.jpg"));
         collectShowingMovies.add(new ShowingMovies("Boosty and the Beast","01:56:49", date, "picture/poster/booty_and_the_beast.jpg"));
@@ -201,9 +213,9 @@ public class HomePage {
 
     public void addComingSoonMovie() {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate date = LocalDate.parse("09/09/2019", dateTimeFormatter);
+        LocalDate date = LocalDate.parse("09/09/2020", dateTimeFormatter);
 
-        collectComingSoonMovies.add(new ComingSoonMovies("INCEPTION", "01:55:55", date, "picture/poster/inception.jpg"));
+        collectComingSoonMovies.add(new ComingSoonMovies("INCEPTION", "--:--:--", date, "picture/poster/inception.jpg"));
     }
 
     public void addShowingMoviesInRow() {
@@ -256,6 +268,62 @@ public class HomePage {
         }
     }
 
+    public void addSequenceMovies() {
+        sequenceMovieList = new ArrayList<>();
+
+        for (int i = 0; i < 5; i++) {
+            sequenceMovieList.add(new ArrayList<>());
+            sequenceMovieList.get(i).addAll(collectShowingMovies);
+            sequenceMovieList.get(i).addAll(collectShowingMovies);
+            sequenceMovieList.get(i).addAll(collectShowingMovies);
+        }
+    }
+
+    public void addScheduleShowTimes() {
+        scheduler = new Schedule();
+        scheduleShowTimes = new ArrayList<>();
+
+        String[] typeSystem = {"Normal", "Normal/4K", "Hybrid/4K", "Hybrid/3D", "Couple/4K"};
+
+        for (int i = 0; i < 5; i++) {
+            ArrayList<ShowingSystem> schedule = new ArrayList<>();
+
+            for (Movies movies : sequenceMovieList.get(i)) {
+                ShowingSystem system = scheduler.createSchedule(movies, typeSystem[i]);
+                system.setLabel(createScheduleLabel(system));
+
+                addSeat(system, i);
+                schedule.add(system);
+            }
+            scheduler.resetTime();
+            scheduleShowTimes.add(schedule);
+        }
+    }
+
+    public void addSeat(ShowingSystem showingSystem, int index) {
+        int[] startPrice = {220, 260, 260, 290, 300};
+        int[][] numSeat = {{10, 10}, {10, 15}, {8, 15}, {8, 10}, {8, 8}};
+
+        showingSystem.generateSeat(numSeat[index][0], numSeat[index][1], startPrice[index]);
+    }
+
+
+    public Label createScheduleLabel(ShowingSystem showingSystem) {
+        Label label = new Label(showingSystem.getTimeStart());
+        label.setPrefWidth(100);
+        label.setPrefHeight(40);
+
+        label.setFont(Font.font("System", FontWeight.BOLD, 24));
+        label.setTextFill(Color.BLACK);
+        label.setAlignment(Pos.CENTER);
+        label.setCursor(Cursor.HAND);
+
+        label.setStyle("-fx-background-color: linear-gradient(#FDC830,#F37335);\n" +
+                "    -fx-background-radius: 25;\n" +
+                "    -fx-background-insets: 0;");
+
+        return label;
+    }
 
     public AnchorPane createTheatreAnchorPaneToShow() {
         AnchorPane anchorPane = new AnchorPane();
@@ -287,8 +355,8 @@ public class HomePage {
             imageView.setLayoutX(634);
         }
         imageView.setCursor(Cursor.HAND);
-        imageView.setOnMouseEntered(this::mouseEnterOnPoster);
-        imageView.setOnMouseExited(this::mouseExitOffPoster);
+        imageView.setOnMouseEntered(this::mouseEnterOnObject);
+        imageView.setOnMouseExited(this::mouseExitOffObject);
         imageView.setOnMouseClicked(this::showMovieDetail);
 
         return imageView;
@@ -304,8 +372,8 @@ public class HomePage {
         titleLabel.setPrefWidth(204);
         titleLabel.setPrefHeight(40);
 
-        titleLabel.setOnMouseEntered(this::mouseEnterOnTitle);
-        titleLabel.setOnMouseExited(this::mouseExitOffTitle);
+        titleLabel.setOnMouseEntered(this::mouseEnterOnObject);
+        titleLabel.setOnMouseExited(this::mouseExitOffObject);
         titleLabel.setOnMouseClicked(this::showMovieDetail);
 
         return titleLabel;
@@ -323,32 +391,31 @@ public class HomePage {
             list = collectSoonAnchorPane;
         }
 
-        vBoxshow.getChildren().clear(); // clear every node in vBox before show movie list.
-        //vBoxshow.setPrefHeight(0); // reset vBox pre-height.
+        vBoxShow.getChildren().clear(); // clear every node in vBox before show movie list.
 
         for (AnchorPane anchorPane : list) {
             anchorPane.setOpacity(0);
-            vBoxshow.getChildren().add(anchorPane); // add movies on movies list.
-            //vBoxshow.setPrefHeight(vBoxshow.getPrefHeight() + anchorPane.getPrefHeight()); // resize vBox pre-height after adding.
+            vBoxShow.getChildren().add(anchorPane); // add movies on movies list.
             effectOnObject.fadeMoviesInRow(anchorPane); // fade row of list in.
         }
     }
 
     public void showMovieDetail(MouseEvent event) {
         AnchorPane newPane = createTheatreAnchorPaneToShow(); // Create new anchorpane to show detail movie scene.
-        vBoxshow.getChildren().clear(); // Clear every node in vBox .
-        vBoxshow.getChildren().add(newPane); // Add new anchorpane to vBox.
+        vBoxShow.getChildren().clear(); // Clear every node in vBox .
+        vBoxShow.getChildren().add(newPane); // Add new anchorpane to vBox.
 
         Node selectedNode = (Node) event.getSource(); // Get node was clicked.
         checkSelectedObject(selectedNode); // check node is from which object movie.
 
         // Load detail movies scene after click on node.
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("movieDetail.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../MovieDetailScene/movieDetail.fxml"));
             Parent root = loader.load();
 
             MovieDetail detailController = loader.getController();
             detailController.setSelectedMovie(this.selectedMovie);
+            detailController.setScheduleShowtimes(scheduleShowTimes);
             detailController.setSceneSize(mainPane.widthProperty());
 
             root.opacityProperty().setValue(0);
@@ -364,11 +431,11 @@ public class HomePage {
     }
 
     public void showAccount() {
-        vBoxshow.getChildren().clear();
+        vBoxShow.getChildren().clear();
     }
 
     public void showLogin() {
-        vBoxshow.getChildren().clear();
+        vBoxShow.getChildren().clear();
     }
 
 
