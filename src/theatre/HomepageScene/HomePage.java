@@ -102,6 +102,8 @@ public class HomePage {
     }
 
     @FXML public void mouseClickOnLabel(MouseEvent event) {
+        effectOnObject.fadeOutNode(vBoxShow);
+
         Label effectedLabel = (Label) event.getSource();
         if (effectedLabel == preLabel) {return;}
 
@@ -302,7 +304,7 @@ public class HomePage {
 
     public void addSeat(ShowingSystem showingSystem, int index) {
         int[] startPrice = {220, 260, 260, 290, 300};
-        int[][] numSeat = {{10, 10}, {10, 15}, {8, 15}, {8, 10}, {8, 8}};
+        int[][] numSeat = {{5, 8}, {5, 10}, {8, 15}, {8, 10}, {8, 8}};
 
         showingSystem.generateSeat(numSeat[index][0], numSeat[index][1], startPrice[index]);
     }
@@ -381,6 +383,7 @@ public class HomePage {
 
 
     public void showMoviesOnTheatre() {
+        effectOnObject.fadeInNode(vBoxShow);
 
         ObservableList<AnchorPane> list = null;
 
@@ -390,13 +393,11 @@ public class HomePage {
         else {
             list = collectSoonAnchorPane;
         }
-
         vBoxShow.getChildren().clear(); // clear every node in vBox before show movie list.
-
         for (AnchorPane anchorPane : list) {
             anchorPane.setOpacity(0);
             vBoxShow.getChildren().add(anchorPane); // add movies on movies list.
-            effectOnObject.fadeMoviesInRow(anchorPane); // fade row of list in.
+            effectOnObject.fadeInNode(anchorPane); // fade row of list in.
         }
     }
 
@@ -437,7 +438,6 @@ public class HomePage {
     public void showLogin() {
         vBoxShow.getChildren().clear();
     }
-
 
     public void checkSelectedObject(Node node){
         Movies selectedMovie = null;

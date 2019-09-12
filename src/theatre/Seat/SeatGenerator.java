@@ -1,7 +1,5 @@
 package theatre.Seat;
 
-import javafx.scene.image.ImageView;
-
 public class SeatGenerator {
 
     public Seat[][] normalSeat(int row, int column, int price) {
@@ -10,7 +8,7 @@ public class SeatGenerator {
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < column; j++) {
                 seats[i][j] = new Seat("Normal", "/picture/seat/normal.png", price, false);
-//                createSeatImage(seats[i][j]);
+                seats[i][j].setSeatPosition(generateSeatPosition(i, j + 1));
             }
         }
 
@@ -24,21 +22,21 @@ public class SeatGenerator {
             if (i < 2) {
                 for (int j = 0; j < column; j++) {
                     seats[i][j] = new Seat("VIP","picture/seat/vip.png", startPrice + 40, false);
-//                    createSeatImage(seats[i][j]);
+                    seats[i][j].setSeatPosition(generateSeatPosition(i, j + 1));
                 }
             }
 
             else if (i < 5) {
                 for (int j = 0; j < column; j++) {
                     seats[i][j] = new Seat("Premium", "picture/seat/premium.png", startPrice + 20, false);
-//                    createSeatImage(seats[i][j]);
+                    seats[i][j].setSeatPosition(generateSeatPosition(i, j + 1));
                 }
             }
 
             else {
                 for (int j = 0; j < column; j++) {
                     seats[i][j] = new Seat("Normal", "picture/seat/normal.png", startPrice, false);
-//                    createSeatImage(seats[i][j]);
+                    seats[i][j].setSeatPosition(generateSeatPosition(i, j + 1));
                 }
             }
         }
@@ -46,11 +44,11 @@ public class SeatGenerator {
         return seats;
     }
 
-    private void createSeatImage(Seat seat) {
-        ImageView imgSeat = new ImageView(seat.getSeatImgPath());
-        imgSeat.setFitHeight(50);
-        imgSeat.setFitWidth(50);
+    public String generateSeatPosition(int row, int position) {
+        char startAlpha = 'A';
+        char alpha = (char) (startAlpha + row);
+        String alphaString = alpha + "";
 
-        seat.setSeatImg(imgSeat);
+        return alphaString + position;
     }
 }

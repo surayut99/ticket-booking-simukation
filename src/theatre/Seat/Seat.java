@@ -6,6 +6,7 @@ import javafx.scene.image.ImageView;
 public class Seat {
     private String type;
     private String seatImgPath;
+    private String seatPosition;
     private int price;
     private boolean reserve;
 
@@ -44,6 +45,14 @@ public class Seat {
 
     public void setSeatImg(ImageView seatImg) {
         this.seatImg = seatImg;
+    }
+
+    public void setSeatPosition(String seatPosition) {
+        this.seatPosition = seatPosition;
+    }
+
+    public String getSeatPosition() {
+        return this.seatPosition;
     }
 
     public ImageView getSeatImg() {

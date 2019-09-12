@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="stackPane" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="theatre.StartScene.StartProgram">
+<StackPane fx:id="stackPane" prefHeight="762.0" prefWidth="1177.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="theatre.StartScene.StartProgram">
    <children>
       <AnchorPane fx:id="startAnchor" opacity="0.0" prefHeight="600.0" prefWidth="889.0" styleClass="testBackground" stylesheets="@../../picture/background/setBackground.css">
          <children>

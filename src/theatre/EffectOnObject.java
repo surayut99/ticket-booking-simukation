@@ -4,6 +4,7 @@ import javafx.animation.*;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.effect.ColorAdjust;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Lighting;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
@@ -42,12 +43,20 @@ public class EffectOnObject {
         changeScale.play();
     }
 
-    public void fadeMoviesInRow(AnchorPane anchorPane) {
-        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), anchorPane);
+    public void fadeInNode(Node node) {
+        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), node);
         fadeTransition.setToValue(1);
         fadeTransition.play();
         fadeTransition.setOnFinished(event -> finishTransition());
     }
+
+    public void fadeOutNode(Node node) {
+        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), node);
+        fadeTransition.setToValue(0);
+        fadeTransition.play();
+        fadeTransition.setOnFinished(event -> finishTransition());
+    }
+
 
     public void finishTransition() {
     }
@@ -61,5 +70,13 @@ public class EffectOnObject {
         node.setEffect(colorAdjust);
     }
 
+    public DropShadow createDropShadow() {
+        DropShadow dropShadow = new DropShadow();
+        dropShadow.setWidth(21);
+        dropShadow.setHeight(21);
+        dropShadow.setRadius(10);
+
+        return dropShadow;
+    }
 
 }

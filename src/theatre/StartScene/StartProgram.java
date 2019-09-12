@@ -60,7 +60,7 @@ public class StartProgram {
         stackPane.getChildren().add(root);
 
         Timeline timeline = new Timeline();
-        KeyValue keyValue = new KeyValue(root.translateXProperty(), 200, Interpolator.EASE_IN);
+        KeyValue keyValue = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_IN);
         KeyFrame keyFrame = new KeyFrame(Duration.millis(500), keyValue);
         timeline.getKeyFrames().add(keyFrame);
         timeline.play();
