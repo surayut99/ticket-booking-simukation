@@ -1,6 +1,8 @@
 package theatre;
 
 import javafx.animation.*;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.effect.ColorAdjust;
@@ -12,7 +14,7 @@ import javafx.util.Duration;
 
 public class EffectOnObject {
 
-    public Lighting clickAndchangLabelColor() {
+    public static Lighting clickAndChangLabelColor() {
         Lighting lighting = new Lighting();
         lighting.setDiffuseConstant(2);
         lighting.setSpecularConstant(0);
@@ -20,7 +22,7 @@ public class EffectOnObject {
         return lighting;
     }
 
-    public void changeColorOnSelectedLabel(Label effectedLabel, double value) {
+    public static void changeColorOnSelectedLabel(Label effectedLabel, double value) {
         Lighting lighting = (Lighting) effectedLabel.getEffect();
 
         Timeline timeline = new Timeline();
@@ -30,7 +32,7 @@ public class EffectOnObject {
         timeline.play();
     }
 
-    public void changeScaleOnSelectedNode(Node selectedPoster, double value) {
+    public static  void changeScaleOnSelectedNode(Node selectedPoster, double value) {
         ParallelTransition changeScale = new ParallelTransition();
 
         ScaleTransition xScale = new ScaleTransition(Duration.seconds(0.125), selectedPoster);
@@ -43,25 +45,20 @@ public class EffectOnObject {
         changeScale.play();
     }
 
-    public void fadeInNode(Node node) {
+    public static  void fadeInNode(Node node) {
         FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), node);
         fadeTransition.setToValue(1);
         fadeTransition.play();
-        fadeTransition.setOnFinished(event -> finishTransition());
     }
 
-    public void fadeOutNode(Node node) {
+    public static  void fadeOutNode(Node node) {
         FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), node);
         fadeTransition.setToValue(0);
         fadeTransition.play();
-        fadeTransition.setOnFinished(event -> finishTransition());
     }
 
 
-    public void finishTransition() {
-    }
-
-    public void changeColorSelectedSeat(Node node) {
+    public static  void changeColorSelectedSeat(Node node) {
         ColorAdjust colorAdjust = new ColorAdjust();
         colorAdjust.setContrast(-1);
         colorAdjust.setSaturation(1);
@@ -70,7 +67,7 @@ public class EffectOnObject {
         node.setEffect(colorAdjust);
     }
 
-    public DropShadow createDropShadow() {
+    public static  DropShadow createDropShadow() {
         DropShadow dropShadow = new DropShadow();
         dropShadow.setWidth(21);
         dropShadow.setHeight(21);
@@ -78,5 +75,4 @@ public class EffectOnObject {
 
         return dropShadow;
     }
-
 }

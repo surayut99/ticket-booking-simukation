@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.GaussianBlur?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainPane" prefHeight="851.0" prefWidth="1120.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="theatre.Homepage">
+   <children>
+      <VBox fx:id="mainBox" prefHeight="560.0" prefWidth="1120.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane fx:id="titlePart" style="-fx-background-color: #ffffffff;">
+               <children>
+                  <Label alignment="CENTER" layoutX="309.0" prefHeight="81.0" prefWidth="960.0" style="-fx-background-color: #000000;" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <font>
+                        <Font name="System Bold" size="55.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutY="3.0" prefHeight="81.0" prefWidth="699.0" styleClass="brander" stylesheets="@../picture/background/setBackground.css" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <font>
+                        <Font name="System Bold" size="55.0" />
+                     </font>
+                     <effect>
+                        <GaussianBlur>
+                           <input>
+                              <ColorAdjust brightness="-0.39" saturation="1.0" />
+                           </input>
+                        </GaussianBlur>
+                     </effect>
+                  </Label>
+                  <Label alignment="CENTER" layoutY="3.0" prefHeight="81.0" prefWidth="960.0" text="SAMPLE CINEMA" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                     <font>
+                        <Font name="System Bold" size="55.0" />
+                     </font>
+                     <effect>
+                        <Glow level="0.85" />
+                     </effect>
+                  </Label>
+               </children>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </AnchorPane>
+            <AnchorPane fx:id="showPart" prefHeight="673.0" prefWidth="1120.0">
+               <children>
+                  <ScrollPane hbarPolicy="NEVER" prefHeight="673.0" prefWidth="1120.0" style="-fx-background-color: #000000;" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <content>
+                        <AnchorPane fx:id="showContent" prefHeight="673.0" prefWidth="1120.0" styleClass="background" stylesheets="@../picture/background/setBackground.css">
+                           <children>
+                              <AnchorPane prefHeight="673.0" prefWidth="1120.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="optionPart" prefHeight="38.0" prefWidth="889.0" style="-fx-background-color: #2471A3;">
+               <children>
+                  <HBox prefHeight="94.0" prefWidth="359.0" spacing="20.0">
+                     <children>
+                        <Label fx:id="showingOption" alignment="CENTER" onMouseClicked="#mouseClickOnNode" onMouseEntered="#mouseEnterOnNode" onMouseExited="#mouseExitOffNode" prefHeight="74.0" prefWidth="142.0" style="-fx-background-color: #1F618D; -fx-background-radius: 50; -fx-background-insets: 0;" text="SHOWING" textFill="WHITE" HBox.hgrow="SOMETIMES">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <effect>
+                              <Lighting diffuseConstant="2.0" specularConstant="0.0">
+                                 <bumpInput>
+                                    <Shadow blurType="GAUSSIAN" />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant />
+                                 </light>
+                              </Lighting>
+                           </effect>
+                        </Label>
+                        <Label fx:id="comingSoonOption" alignment="CENTER" onMouseClicked="#mouseClickOnNode" onMouseEntered="#mouseEnterOnNode" onMouseExited="#mouseExitOffNode" prefHeight="74.0" prefWidth="199.0" style="-fx-background-color: null; -fx-background-radius: 50; -fx-background-insets: 0;" text="COMING SOON" textFill="WHITE" HBox.hgrow="SOMETIMES">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <effect>
+                              <Lighting diffuseConstant="2.0" specularConstant="0.0">
+                                 <bumpInput>
+                                    <Shadow blurType="GAUSSIAN" />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant />
+                                 </light>
+                              </Lighting>
+                           </effect>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="TOP_RIGHT" layoutX="696.0" prefHeight="94.0" prefWidth="259.0" spacing="20.0" AnchorPane.rightAnchor="0.0">
+                     <children>
+                        <Label fx:id="accountOption" alignment="CENTER" onMouseClicked="#mouseClickOnNode" onMouseEntered="#mouseEnterOnNode" onMouseExited="#mouseExitOffNode" prefHeight="100.0" prefWidth="124.0" style="-fx-background-color: null; -fx-background-radius: 50; -fx-background-insets: 0;" text="ACCOUNT" textFill="WHITE" HBox.hgrow="SOMETIMES">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <effect>
+                              <Lighting diffuseConstant="2.0" specularConstant="0.0">
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant />
+                                 </light>
+                              </Lighting>
+                           </effect>
+                        </Label>
+                        <Label fx:id="logInOption" alignment="CENTER" onMouseClicked="#mouseClickOnNode" onMouseEntered="#mouseEnterOnNode" onMouseExited="#mouseExitOffNode" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: null; -fx-background-radius: 50; -fx-background-insets: 0;" text="LOG IN" textFill="WHITE" HBox.hgrow="SOMETIMES">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <effect>
+                              <Lighting diffuseConstant="2.0" specularConstant="0.0">
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant />
+                                 </light>
+                              </Lighting>
+                           </effect>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </children>
+         <effect>
+            <ColorAdjust />
+         </effect>
+      </VBox>
+   </children>
+</AnchorPane>

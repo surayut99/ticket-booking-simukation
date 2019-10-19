@@ -1,0 +1,40 @@
+.normalTheatre {
+    -fx-background-color: linear-gradient(#D1913C,#FFD194);
+    -fx-background-radius: 15;
+    -fx-background-insets: 0;
+}
+
+.normalAnd4KTheatre {
+    -fx-background-color: linear-gradient(#136a8a,#267871);
+    -fx-background-radius: 15;
+    -fx-background-insets: 0;
+}
+
+.hybridAnd4KTheatre {
+    -fx-background-color: linear-gradient(#00bf8f,#001510);
+    -fx-background-radius: 15;
+    -fx-background-insets: 0;
+}
+.hybridAnd3DTheatre {
+    -fx-background-color: linear-gradient(#360033,#0b8793);
+    -fx-background-radius: 15;
+    -fx-background-insets: 0;
+}
+
+.coupleAnd4KTheatre {
+    -fx-background-color: linear-gradient(#dc2430,#7b4397);
+    -fx-background-radius: 15;
+    -fx-background-insets: 0;
+}
+
+.screenTheatre {
+    -fx-background-color: linear-gradient(#83a4d4,#b6fbff);
+    -fx-background-radius: 5;
+    -fx-background-insets: 0;
+}
+
+.schedule {
+    -fx-background-color: linear-gradient(#FDC830,#F37335);
+    -fx-background-radius: 25;
+    -fx-background-insets: 0;
+}

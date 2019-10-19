@@ -1,0 +1,10 @@
+.recommend{
+    -fx-background-image: url('spiderman-homeless.jpg');
+    -fx-background-repeat: stretch;
+}
+
+.poster-0-0{
+    -fx-background-image: url('spiderman-homeless.jpg');
+    -fx-background-position: 100% 100% ;
+}
+
