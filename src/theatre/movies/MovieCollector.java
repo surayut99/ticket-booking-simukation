@@ -4,7 +4,7 @@ import javafx.scene.Cursor;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import theatre.NodeCreator;
+import theatre.tools.NodeCreator;
 
 import java.util.ArrayList;
 

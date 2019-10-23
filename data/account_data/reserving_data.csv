@@ -1,0 +1,9 @@
+username,admin
+theatre,1
+    schedule,10:00
+    position,A1,A2,A3,A4,A5
+    schedule,10:00
+    position,B1,B2,B3
+theatre,2
+    schedule,10:00
+    position,A1,A2,A3,A4,A5

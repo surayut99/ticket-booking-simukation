@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="mainPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="860.0" prefWidth="1280.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="theatre.pages.StartController">
+   <children>
+      <AnchorPane fx:id="showPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" prefHeight="860.0" prefWidth="1280.0" styleClass="testBackground" stylesheets="@../../picture/background/setBackground.css">
+         <children>
+            <GridPane fx:id="gridLogin" disable="true" layoutX="305.0" layoutY="262.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" prefHeight="238.0" prefWidth="670.0" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="200.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="224.0" minWidth="10.0" prefWidth="50.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="249.0" minWidth="10.0" prefWidth="249.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="421.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="52.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="114.0" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="115.0" minHeight="0.0" prefHeight="63.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="172.0" minHeight="10.0" prefHeight="126.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label text="USERNAME" textFill="WHITE" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Label>
+                  <Label text="PASSWORD" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Label>
+                  <TextField fx:id="username" prefHeight="40.0" prefWidth="386.0" style="-fx-background-radius: 20;" GridPane.columnIndex="2">
+                     <font>
+                        <Font name="System Bold" size="21.0" />
+                     </font>
+                  </TextField>
+                  <PasswordField fx:id="password" style="-fx-background-radius: 20;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold" size="21.0" />
+                     </font>
+                  </PasswordField>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <children>
+                        <Button fx:id="login" layoutX="311.0" mnemonicParsing="false" onAction="#ActionOnLogInButton" style="-fx-background-radius: 20;" text="LOG IN" AnchorPane.rightAnchor="14.0">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="createAccount" layoutX="-1.0" mnemonicParsing="false" onAction="#ActionOnCreateAccount" style="-fx-background-radius: 20;" text="CREATE NEW ACCOUNT" AnchorPane.leftAnchor="-1.0">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Label fx:id="resetPasseord" layoutY="50.0" text="forget password" textFill="#ffce40" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0">
+                           <font>
+                              <Font name="System Bold Italic" size="18.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Label>
+                        <Text fx:id="warningLogInMessage" fill="#ff6060" layoutY="96.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="warning message!" wrappingWidth="420.9999942779541" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+               </children>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </GridPane>
+            <Label fx:id="welcomeLabel" alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="425.0" layoutY="276.0" opacity="0.0" prefHeight="105.0" prefWidth="487.0" text="Welcome to" textFill="#ff2828" AnchorPane.leftAnchor="425.0" AnchorPane.rightAnchor="425.0" AnchorPane.topAnchor="276.0">
+               <font>
+                  <Font name="Forte" size="86.0" />
+               </font>
+               <effect>
+                  <Bloom threshold="0.0">
+                     <input>
+                        <Glow level="0.13">
+                           <input>
+                              <ColorAdjust brightness="0.29" contrast="1.0" saturation="0.41" />
+                           </input>
+                        </Glow>
+                     </input>
+                  </Bloom>
+               </effect>
+            </Label>
+            <Label fx:id="sampleText" alignment="CENTER" layoutX="425.0" layoutY="356.0" opacity="0.0" prefHeight="74.0" prefWidth="432.0" text="SAMPLE CINEMA" textFill="#ff5500" AnchorPane.leftAnchor="425.0" AnchorPane.rightAnchor="425.0" AnchorPane.topAnchor="356.0">
+               <font>
+                  <Font name="System Bold" size="51.0" />
+               </font>
+               <effect>
+                  <Glow level="1.0" />
+               </effect>
+            </Label>
+            <Label fx:id="clickToContinue" alignment="CENTER" disable="true" layoutX="446.0" layoutY="793.0" onMouseClicked="#mouseClickToContinue" opacity="0.0" prefHeight="34.0" prefWidth="388.0" text="CONTINUE WITHOUT LOGGING IN" textFill="WHITE" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="446.0" AnchorPane.rightAnchor="446.0">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

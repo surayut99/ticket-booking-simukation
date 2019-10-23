@@ -20,9 +20,17 @@
 
 .background {
     -fx-background-image: url('blur_backgroundShowMovies.png');
-    -fxmin-height: 500px;
-  -fx-background-attachment: fixed;
-  -fx-background-position: center;
-  -fx-background-repeat: no-repeat;
-	  -fx-background-size: cover;
+    -fx-background-attachment: fixed;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}
+
+.register {
+    -fx-background-image: url('register-background.jpg');
+    -fx-min-height: 500px;
+    -fx-background-attachment: fixed;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
 }
