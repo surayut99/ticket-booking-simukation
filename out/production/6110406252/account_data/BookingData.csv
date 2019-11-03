@@ -1,0 +1,35 @@
+username,testAcc
+theatre,1
+	movie,Boosty And the Beast
+		schedule,14:34
+		positions,C7 C8
+		schedule,19:34
+		positions,B3 B4 B5 B6
+	movie,Spider-Man: Homeless
+		schedule,12:17
+		positions,B4 B5 B6
+theatre,2
+	movie,Once Upon Deadpool
+		schedule,10:00
+		positions,A1 A2 A3 A6 A7 A8 B1 B2 B3
+theatre,4
+	movie,Spider-Man: Homeless
+		schedule,12:49
+		positions,B2 B3 C1 C2 C3
+		schedule,17:55
+		positions,A7 A8 D5 D6 E5 E6
+
+username,qwerty
+theatre,2
+	movie,Once Upon Deadpool
+		schedule,19:28
+		positions,B5 B6 B7 C6 C7 D7
+theatre,3
+	movie,Boosty And the Beast
+		schedule,20:06
+		positions,C6 C7 C8 C9 E10 E9
+theatre,5
+	movie,Spider-Man: Homeless
+		schedule,10:00
+		positions,A1 A2 B5 B6
+

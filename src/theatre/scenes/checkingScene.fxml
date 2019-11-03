@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="mainAnchorPane" prefWidth="1000.0" styleClass="background" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="theatre.scenes.CheckingController">
+   <children>
+      <HBox alignment="CENTER" layoutX="20.0" layoutY="13.0" spacing="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <ImageView fx:id="poster" fitHeight="400.0" fitWidth="290.0" pickOnBounds="true">
+               <effect>
+                  <DropShadow blurType="GAUSSIAN" />
+               </effect>
+            </ImageView>
+            <AnchorPane fx:id="reservingData">
+               <children>
+                  <GridPane fx:id="titleDetial" layoutX="9.0" layoutY="9.0" prefHeight="400.0" prefWidth="311.0" style="-fx-background-color: rgba(0,0,0,0.5); -fx-background-radius: 25;">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="522.0" minWidth="10.0" prefWidth="247.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <AnchorPane prefHeight="47.0" prefWidth="344.0">
+                           <children>
+                              <Label layoutX="47.0" layoutY="6.0" prefHeight="40.0" prefWidth="256.0" text="NO.THEATRE" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="26.0" />
+                                 </font>
+                                 <effect>
+                                    <Glow />
+                                 </effect>
+                              </Label>
+                              <ImageView fitHeight="65.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="275.0" AnchorPane.topAnchor="0.0">
+                                 <image>
+                                    <Image url="@../../picture/theatre.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="47.0" prefWidth="344.0" GridPane.rowIndex="1">
+                           <children>
+                              <Label layoutX="47.0" layoutY="6.0" prefHeight="40.0" prefWidth="256.0" text="SHOWING SYSTEM" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="26.0" />
+                                 </font>
+                                 <effect>
+                                    <Glow />
+                                 </effect>
+                              </Label>
+                              <ImageView fitHeight="65.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="275.0" AnchorPane.topAnchor="0.0">
+                                 <image>
+                                    <Image url="@../../picture/video-camera.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="47.0" prefWidth="344.0" GridPane.rowIndex="2">
+                           <children>
+                              <Label layoutX="47.0" layoutY="6.0" prefHeight="40.0" prefWidth="256.0" text="SHOWTIME" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="26.0" />
+                                 </font>
+                                 <effect>
+                                    <Glow />
+                                 </effect>
+                              </Label>
+                              <ImageView fitHeight="65.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="275.0" AnchorPane.topAnchor="0.0">
+                                 <image>
+                                    <Image url="@../../picture/time.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane GridPane.rowIndex="3">
+                           <children>
+                              <Label layoutX="47.0" layoutY="6.0" prefHeight="40.0" prefWidth="250.0" text="NORMAL SEAT" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="26.0" />
+                                 </font>
+                                 <effect>
+                                    <Glow />
+                                 </effect>
+                              </Label>
+                              <ImageView fitHeight="65.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="275.0" AnchorPane.topAnchor="0.0">
+                                 <image>
+                                    <Image url="@../../picture/seat/normal.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane GridPane.rowIndex="4">
+                           <children>
+                              <Label layoutX="47.0" layoutY="6.0" prefHeight="40.0" prefWidth="250.0" text="PREMIUM SEAT" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="26.0" />
+                                 </font>
+                                 <effect>
+                                    <Glow />
+                                 </effect>
+                              </Label>
+                              <ImageView fitHeight="50.0" fitWidth="47.0" pickOnBounds="true" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="275.0" AnchorPane.topAnchor="0.0">
+                                 <image>
+                                    <Image url="@../../picture/seat/premium.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane GridPane.rowIndex="5">
+                           <children>
+                              <Label layoutX="47.0" layoutY="4.0" prefHeight="40.0" prefWidth="250.0" text="VIP SEAT" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="26.0" />
+                                 </font>
+                                 <effect>
+                                    <Glow />
+                                 </effect>
+                              </Label>
+                              <ImageView fitHeight="65.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="275.0" AnchorPane.topAnchor="0.0">
+                                 <image>
+                                    <Image url="@../../picture/seat/vip.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane GridPane.rowIndex="7">
+                           <children>
+                              <Label layoutX="47.0" layoutY="8.0" prefHeight="40.0" prefWidth="250.0" text="TOTAL COST" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="26.0" />
+                                 </font>
+                                 <effect>
+                                    <Glow />
+                                 </effect>
+                              </Label>
+                              <ImageView fitHeight="40.0" fitWidth="45.0" layoutX="4.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="267.0" AnchorPane.topAnchor="8.0">
+                                 <image>
+                                    <Image url="@../../picture/coin.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane GridPane.rowIndex="6">
+                           <children>
+                              <Label layoutX="47.0" layoutY="4.0" prefHeight="40.0" prefWidth="250.0" text="TOTAL SEAT" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="26.0" />
+                                 </font>
+                                 <effect>
+                                    <Glow />
+                                 </effect>
+                              </Label>
+                              <ImageView fitHeight="65.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="275.0" AnchorPane.topAnchor="0.0">
+                                 <image>
+                                    <Image url="@../../picture/flag.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                     <effect>
+                        <DropShadow>
+                           <input>
+                              <Glow level="0.29" />
+                           </input>
+                        </DropShadow>
+                     </effect>
+                     <padding>
+                        <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
+                     </padding>
+                  </GridPane>
+                  <GridPane fx:id="reservingDetail" layoutX="345.0" layoutY="9.0" prefHeight="400.0" prefWidth="311.0" style="-fx-background-color: rgba(0,0,0,0.5); -fx-background-radius: 25;">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="522.0" minWidth="10.0" prefWidth="247.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <effect>
+                        <DropShadow>
+                           <input>
+                              <Glow level="0.7" />
+                           </input>
+                        </DropShadow>
+                     </effect>
+                     <padding>
+                        <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
+                     </padding>
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="304.826171875">
+                           <font>
+                              <Font name="System Bold" size="26.0" />
+                           </font>
+                           <fill>
+                              <RadialGradient centerX="0.5113636363636365" centerY="0.5242718446601942" focusDistance="0.024390243902439046" radius="1.0">
+                                 <stops>
+                                    <Stop color="WHITE" />
+                                    <Stop color="#909090" offset="1.0" />
+                                 </stops>
+                              </RadialGradient>
+                           </fill>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="304.826171875" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="26.0" />
+                           </font>
+                           <fill>
+                              <LinearGradient endX="1.0" endY="0.8592233009708738" startY="0.2524271844660194">
+                                 <stops>
+                                    <Stop color="#ff5050" />
+                                    <Stop color="#ff5050" offset="0.007246376811594203" />
+                                    <Stop color="#240475" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </fill>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="304.826171875" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="26.0" />
+                           </font>
+                           <fill>
+                              <RadialGradient centerX="0.6363636363636365" centerY="0.3737864077669903" radius="0.575609756097561">
+                                 <stops>
+                                    <Stop color="WHITE" />
+                                    <Stop color="#ffcc52" offset="1.0" />
+                                 </stops>
+                              </RadialGradient>
+                           </fill>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="301.826171875" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                           <fill>
+                              <RadialGradient centerX="0.4772727272727274" radius="0.6">
+                                 <stops>
+                                    <Stop color="WHITE" />
+                                    <Stop color="#dd2929" offset="0.717391304347826" />
+                                    <Stop color="#dd2929" offset="1.0" />
+                                 </stops>
+                              </RadialGradient>
+                           </fill>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="304.826171875" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                           <fill>
+                              <RadialGradient centerX="0.5113636363636365" radius="0.6">
+                                 <stops>
+                                    <Stop color="WHITE" />
+                                    <Stop color="#9a00ff" offset="1.0" />
+                                 </stops>
+                              </RadialGradient>
+                           </fill>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="304.826171875" GridPane.rowIndex="5">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                           <fill>
+                              <RadialGradient centerX="0.5113636363636365" radius="0.6">
+                                 <stops>
+                                    <Stop color="WHITE" />
+                                    <Stop color="#ff8400" offset="0.8478260869565217" />
+                                    <Stop color="#ff8400" offset="1.0" />
+                                 </stops>
+                              </RadialGradient>
+                           </fill>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="304.826171875" GridPane.rowIndex="6">
+                           <font>
+                              <Font name="System Bold" size="26.0" />
+                           </font>
+                           <fill>
+                              <LinearGradient startY="1.0">
+                                 <stops>
+                                    <Stop color="#ff5050" />
+                                    <Stop color="#52beff" offset="0.007246376811594203" />
+                                    <Stop color="#4602ff" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </fill>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="304.826171875" GridPane.rowIndex="7">
+                           <font>
+                              <Font name="System Bold" size="26.0" />
+                           </font>
+                           <fill>
+                              <LinearGradient startY="1.0">
+                                 <stops>
+                                    <Stop color="#ffdb52" />
+                                    <Stop color="#ffdb52" offset="0.007246376811594203" />
+                                    <Stop color="#ff9900" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </fill>
+                        </Text>
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+      <AnchorPane fx:id="movieData" layoutX="21.0" layoutY="420.0">
+         <children>
+            <Label fx:id="title" layoutX="9.0" layoutY="9.0" prefHeight="53.0" prefWidth="564.0" text="Title . . ." textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+               <effect>
+                  <DropShadow>
+                     <input>
+                        <Glow level="0.55" />
+                     </input>
+                  </DropShadow>
+               </effect>
+            </Label>
+            <Label fx:id="date" layoutX="9.0" layoutY="52.0" prefHeight="27.0" prefWidth="237.0" text="Release Date: dd/MM/yyyy" textFill="#8fd0ff">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Label>
+            <Label fx:id="length" layoutX="9.0" layoutY="75.0" prefHeight="27.0" prefWidth="149.0" text="Length: 00:00:00" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Label>
+            <Label fx:id="movieStatus" layoutX="158.0" layoutY="75.0" prefHeight="27.0" prefWidth="121.0" text="(Showing)">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endY="1.0" startX="1.0" startY="0.3155339805825243">
+                     <stops>
+                        <Stop color="#26ffb8" />
+                        <Stop color="#4a4aff" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Text fx:id="description" fill="WHITE" layoutX="30.0" layoutY="538.1865234375" strokeType="OUTSIDE" strokeWidth="0.0" text="TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING " wrappingWidth="482.6708984375" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="522.0">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Text>
+      <Button fx:id="continueBtn" layoutX="863.0" layoutY="522.0" mnemonicParsing="false" onAction="#mouseActionContinue" prefHeight="48.0" prefWidth="121.0" style="-fx-background-radius: 25; -fx-background-color: linear-gradient(#480048, #C04848);" text="CONTINUE" textFill="WHITE" AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="16.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Text fx:id="warningMessage" fill="RED" layoutX="661.0" layoutY="465.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You have not logged in yet, please log in and try again." wrappingWidth="322.00000166893005" AnchorPane.bottomAnchor="79.0546875" AnchorPane.rightAnchor="16.999998331069946">
+         <effect>
+            <Glow>
+               <input>
+                  <DropShadow />
+               </input>
+            </Glow>
+         </effect>
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

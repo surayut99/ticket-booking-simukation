@@ -1,0 +1,13 @@
+username,testAcc
+theatre,1
+	schedule,21:45
+	positions,A2,A3,A4,A5
+
+username,qwerty
+theatre,1
+	schedule,21:45
+	positions,B6,B7,B8
+theatre,2
+	schedule,22:17
+	positions,A5,A6,A7
+

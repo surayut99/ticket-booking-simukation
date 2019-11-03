@@ -4,9 +4,11 @@ import theatre.movies.Movies;
 import theatre.seat.Seat;
 
 public class ShowingSystemCollector {
-    public static ShowingSystem[] showingSystems = new ShowingSystem[5];
+    private static ShowingSystem[] showingSystems;
 
     public static void addShowingSystem(int sequenceTheatre, double startPrice, String typeSystem, Seat[][] seats) {
+        if (showingSystems == null) showingSystems = new ShowingSystem[5];
+        
         switch (typeSystem) {
             case "3D":
                 System3D system3D = new System3D(typeSystem, startPrice, seats);
@@ -35,5 +37,9 @@ public class ShowingSystemCollector {
             if (showingSystems[i] == s) return i;
         }
         return -1;
+    }
+
+    public static ShowingSystem[] getShowingSystems() {
+        return showingSystems;
     }
 }

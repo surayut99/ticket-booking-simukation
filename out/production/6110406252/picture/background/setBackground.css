@@ -10,7 +10,7 @@
     -fx-background-attachment: fixed;
 }
 
-.testBackground{
+.startBackground{
     -fx-background-image: url('starting-background.jpg');
     -fx-background-size: cover;
     -fx-background-repeat: no-repeat;
@@ -31,6 +31,14 @@
     -fx-min-height: 500px;
     -fx-background-attachment: fixed;
     -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}
+
+.accountBackground {
+    -fx-background-image: url('brannerBackground.jpg');
+    -fx-background-attachment: fixed;
+    -fx-background-position: top;
     -fx-background-repeat: no-repeat;
     -fx-background-size: cover;
 }

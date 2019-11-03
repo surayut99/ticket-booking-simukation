@@ -4,12 +4,12 @@ import theatre.movies.Movies;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class Schedule {
     private Movies movies;
     private String startTime;
     private ArrayList<String> reservedPositionSeat;
-    private ArrayList<String> reservedSeatUser;
     private int totalSeat;
 
     public Schedule(Movies movies, String startTime, int totalSeat) {
@@ -18,7 +18,6 @@ public class Schedule {
 
         this.totalSeat = totalSeat;
         this.reservedPositionSeat = new ArrayList<>();
-        this.reservedSeatUser = new ArrayList<>();
     }
 
     public void addReservedSeat(String ...seatPositions) {
@@ -49,11 +48,4 @@ public class Schedule {
         return reservedPositionSeat;
     }
 
-    public void addReservedSeatUser(String ...seatUser) {
-        reservedSeatUser.addAll(Arrays.asList(seatUser));
-    }
-
-    public ArrayList<String> getReservedSeatUser() {
-        return reservedSeatUser;
-    }
 }

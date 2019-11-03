@@ -13,8 +13,7 @@ public class ShowingSystem {
     private String systemType;
     private double price;
     private ArrayList<Schedule> schedules;
-    private ArrayList<String> seatTypes;
-    private ArrayList<Double> seatPrices;
+    private ArrayList<Seat> sampleSeats;
     private Seat[][] seats;
 
     public ShowingSystem(String systemType, double price, Seat[][] seats) {
@@ -22,8 +21,7 @@ public class ShowingSystem {
         this.price = price;
         this.systemType = systemType;
         this.schedules = new ArrayList<>();
-        this.seatTypes = new ArrayList<>();
-        this.seatPrices = new ArrayList<>();
+        this.sampleSeats = new ArrayList<>();
     }
 
     public void addSequenceMovies(Movies...movies) {
@@ -52,12 +50,8 @@ public class ShowingSystem {
         return schedules;
     }
 
-    public ArrayList<String> getSeatTypes() {
-        return seatTypes;
-    }
-
-    public ArrayList<Double> getSeatPrices() {
-        return seatPrices;
+    public ArrayList<Seat> getSampleSeats() {
+        return sampleSeats;
     }
 
     public Seat[][] getSeats() {
@@ -77,8 +71,7 @@ public class ShowingSystem {
         for (Seat[] seat : seats) {
             if (!seat[0].getSeatType().equals(currentType)) {
                 currentType = seat[0].getSeatType();
-                seatTypes.add(currentType);
-                seatPrices.add(seat[0].getPrice());
+                sampleSeats.add(seat[0]);
             }
         }
     }

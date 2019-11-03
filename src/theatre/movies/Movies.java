@@ -3,12 +3,12 @@ package theatre.movies;
 public class Movies{
     private String title;
     private String length;
-    private String locationPoster;
+    private String posterLocation;
 
-    public Movies(String title, String length, String locationPoster) {
+    public Movies(String title, String length, String posterLocation) {
         this.title = title;
         this.length = length;
-        this.locationPoster = locationPoster;
+        this.posterLocation = posterLocation;
     }
 
     public String getTitle() {
@@ -19,7 +19,7 @@ public class Movies{
         return length;
     }
 
-    public String getLocationPoster() {
-        return locationPoster;
+    public String getPosterLocation() {
+        return posterLocation;
     }
 }

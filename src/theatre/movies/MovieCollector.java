@@ -17,7 +17,7 @@ public class MovieCollector {
 
         for (Movies movies : moviesList) {
             if (movies.getClass() == classname) {
-                ImageView poster = NodeCreator.createImageView(200, 280, movies.getLocationPoster(), false);
+                ImageView poster = NodeCreator.createImageView(200, 280, movies.getPosterLocation(), false);
                 Label title = NodeCreator.createLabel(movies.getTitle(), 18, "#ffffff");
                 NodeCreator.setAlignmentNodeOnAnchorPane(title, 290. ,0.,0.,0.);
                 NodeCreator.setAlignmentNodeOnAnchorPane(poster, 0., 0.,0., null);
