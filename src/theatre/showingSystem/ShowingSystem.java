@@ -75,4 +75,11 @@ public class ShowingSystem {
             }
         }
     }
+
+    public Schedule getScheduleByStartTime(String startTime) {
+        for (Schedule schedule : schedules) {
+            if (schedule.getStartTime().equals(startTime)) return schedule;
+        }
+        return null;
+    }
 }

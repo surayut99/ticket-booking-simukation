@@ -115,14 +115,6 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Label fx:id="resetPasseord" layoutY="50.0" text="forget password" textFill="#ffce40" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0">
-                           <font>
-                              <Font name="System Bold Italic" size="18.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Label>
                         <Text fx:id="warningLogInMessage" fill="RED" layoutY="96.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="warning message!" wrappingWidth="416.00000066682696" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0">
                            <font>
                               <Font name="System Bold" size="18.0" />

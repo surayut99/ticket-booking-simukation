@@ -12,11 +12,12 @@
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane fx:id="mainPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="theatre.scenes.HomepageController">
    <children>
@@ -49,7 +50,7 @@
                         <Glow level="0.85" />
                      </effect>
                   </Label>
-                  <Button fx:id="backButton" layoutX="14.0" layoutY="19.0" mnemonicParsing="false" onAction="#actionOnBackButton" opacity="0.0" prefHeight="50.0" style="-fx-background-color: linear-gradient(#F37335, #FDC830); -fx-background-radius: 25;" text="BACK">
+                  <Button fx:id="backButton" layoutX="14.0" layoutY="19.0" mnemonicParsing="false" onAction="#actionOnBackButton" opacity="0.0" prefHeight="50.0" style="-fx-background-color: linear-gradient(#F37335, #FDC830); -fx-background-radius: 25;" text="BACK" AnchorPane.leftAnchor="15.0">
                      <font>
                         <Font name="System Bold" size="23.0" />
                      </font>
@@ -60,6 +61,18 @@
                         <DropShadow />
                      </effect>
                   </Button>
+                  <ImageView fitHeight="63.0" fitWidth="78.0" layoutX="899.0" layoutY="12.0" onMouseClicked="#mouseClickOnAboutMe" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="15.0">
+                     <image>
+                        <Image url="@../../picture/info.png" />
+                     </image>
+                     <effect>
+                        <ColorAdjust hue="0.2" />
+                     </effect>
+                  </ImageView>
+                  <Button layoutX="780.0" layoutY="27.0" mnemonicParsing="false" onAction="#viewCSVFile" style="-fx-background-radius: 20;" text="VIEW CSV FILE" AnchorPane.rightAnchor="100.0">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font></Button>
                </children>
                <effect>
                   <DropShadow />

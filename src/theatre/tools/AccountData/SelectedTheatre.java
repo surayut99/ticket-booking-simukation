@@ -32,6 +32,7 @@ public class SelectedTheatre {
             selectedMovies.addSchedule(schedule, position);
             selectedMoviesList.add(selectedMovies);
         }
+
     }
 
     public void removeBookingData(String titleMovie, Schedule schedule, String[] position) {

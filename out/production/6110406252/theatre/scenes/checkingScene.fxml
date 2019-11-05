@@ -381,7 +381,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <Text fx:id="description" fill="WHITE" layoutX="30.0" layoutY="538.1865234375" strokeType="OUTSIDE" strokeWidth="0.0" text="TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING " wrappingWidth="482.6708984375" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="522.0">
+      <Text fx:id="description" fill="WHITE" layoutX="30.0" layoutY="538.1865234375" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="482.6708984375" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="522.0">
          <font>
             <Font name="System Bold Italic" size="15.0" />
          </font>

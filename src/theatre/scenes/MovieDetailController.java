@@ -8,6 +8,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.ColorAdjust;
@@ -20,6 +22,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import theatre.movies.ComingSoonMovies;
 import theatre.movies.Movies;
@@ -157,11 +160,12 @@ public class MovieDetailController {
         if (label.getText().equals("See more detail")) {
             for (Node node : detailField.getChildren()) EffectController.createFadeTransition(node, 0.25, 0).play();
 
-            Label moreDetail = NodeCreator.createLabel("TestDetail", 16, "#ffffff");
+            Label moreDetail = NodeCreator.createLabel(selectedMovie.getDescription(), 16, "#ffffff");
             NodeCreator.setAlignmentNodeOnAnchorPane(moreDetail, 0., 0., 0., 0.);
             moreDetail.setPadding(new Insets(10, 10, 10, 10));
             moreDetail.setAlignment(Pos.TOP_LEFT);
             moreDetail.setStyle("-fx-background-color: rgba(0,0,0,0.5);");
+            moreDetail.setWrapText(true);
             detailField.getChildren().add(moreDetail);
             label.setText("Hide detail");
         } else {
@@ -169,6 +173,41 @@ public class MovieDetailController {
             detailField.getChildren().remove(3);
             for (Node node : detailField.getChildren()) EffectController.createFadeTransition(node, 0.5, 1).play();
             label.setText("See more detail");
+        }
+    }
+
+    @FXML
+    private void mouseEnterOnMoviePoster(MouseEvent event) {
+        AnchorPane groupPoster = (AnchorPane) event.getSource();
+        ImageView poster = (ImageView) groupPoster.getChildren().get(0);
+        ImageView playIcon = (ImageView) groupPoster.getChildren().get(1);
+        ColorAdjust colorAdjustImg = (ColorAdjust) poster.getEffect();
+        EffectController.createTranslateTimeLine(colorAdjustImg.brightnessProperty(), -0.5, 0.25).play();
+        EffectController.createTranslateTimeLine(playIcon.opacityProperty(), 1, 0.25).play();
+    }
+
+    @FXML private void mouseExitOnMoviePoster(MouseEvent event) {
+        AnchorPane groupPoster = (AnchorPane) event.getSource();
+        ImageView poster = (ImageView) groupPoster.getChildren().get(0);
+        ImageView playIcon = (ImageView) groupPoster.getChildren().get(1);
+        ColorAdjust colorAdjustImg = (ColorAdjust) poster.getEffect();
+        EffectController.createTranslateTimeLine(colorAdjustImg.brightnessProperty(), 0, 0.25).play();
+        EffectController.createTranslateTimeLine(playIcon.opacityProperty(), 0, 0.25).play();
+    }
+
+    @FXML
+    private void mouseClickToShowTrailer(MouseEvent event) {
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/theatre/scenes/trailerScene.fxml"));
+        try {
+            Parent root = loader.load();
+            stage.setTitle(selectedMovie.getTitle() + " - Trailer");
+            stage.setScene(new Scene(root));
+            TrailerController controller = loader.getController();
+            controller.setPath(selectedMovie.getVdoPath());
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

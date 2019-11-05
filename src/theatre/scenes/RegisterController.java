@@ -137,7 +137,7 @@ public class RegisterController {
         List<String> dataList = new ArrayList<>();
 
         try {
-            FileWriter writer = new FileWriter(new File("src/account_data/accounts.csv"), true);
+            FileWriter writer = new FileWriter(new File("src/accountData/accounts.csv"), true);
             String account = inputUsername + "," + inputPassword + "\n";
             StringBuilder data = new StringBuilder();
             for (TextField t : textFields) {
@@ -151,7 +151,7 @@ public class RegisterController {
         }
 
         try {
-            FileWriter writer = new FileWriter(new File("src/account_data/BookingData.csv"), true);
+            FileWriter writer = new FileWriter(new File("src/accountData/BookingData.csv"), true);
             String data = "username," + inputUsername + "\n\n";
             writer.write(data);
             writer.flush();

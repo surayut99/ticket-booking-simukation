@@ -7,6 +7,7 @@
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -24,11 +25,34 @@
          <children>
             <AnchorPane prefHeight="358.0" prefWidth="1000.0" stylesheets="@../../picture/background/setBackground.css">
                <children>
-                  <ImageView fx:id="poster" fitHeight="400.0" fitWidth="290.0" layoutX="26.0" layoutY="23.0" pickOnBounds="true" AnchorPane.leftAnchor="30.0">
-                     <effect>
-                        <DropShadow blurType="GAUSSIAN" />
-                     </effect>
-                  </ImageView>
+                  <AnchorPane layoutX="31.0" layoutY="20.0" onMouseClicked="#mouseClickToShowTrailer" onMouseEntered="#mouseEnterOnMoviePoster" onMouseExited="#mouseExitOnMoviePoster" AnchorPane.leftAnchor="31.0">
+                     <children>
+                        <ImageView fx:id="poster" fitHeight="400.0" fitWidth="290.0" layoutX="-11.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <effect>
+                              <ColorAdjust>
+                                 <input>
+                                    <DropShadow />
+                                 </input>
+                              </ColorAdjust>
+                           </effect>
+                        </ImageView>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="70.0" layoutY="125.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="125.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="125.0">
+                           <image>
+                              <Image url="@../../movieData/player_tools_icon/play_icon.png" />
+                           </image>
+                           <effect>
+                              <ColorAdjust brightness="1.0" contrast="-1.0">
+                                 <input>
+                                    <DropShadow />
+                                 </input>
+                              </ColorAdjust>
+                           </effect>
+                        </ImageView>
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </AnchorPane>
                   <Label fx:id="title" layoutX="337.0" layoutY="14.0" prefHeight="53.0" prefWidth="564.0" text="Title . . ." textFill="WHITE" AnchorPane.leftAnchor="337.0" AnchorPane.rightAnchor="-7.0">
                      <font>
                         <Font name="System Bold" size="36.0" />

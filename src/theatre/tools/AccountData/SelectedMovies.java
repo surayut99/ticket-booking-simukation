@@ -2,10 +2,15 @@ package theatre.tools.AccountData;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
-import javafx.scene.layout.VBox;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import theatre.movies.Movies;
 import theatre.showingSystem.Schedule;
+import theatre.tools.NodeCreator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,7 +44,16 @@ public class SelectedMovies {
             return;
         }
 
-        btnList.add(new Button(schedule.getStartTime()));
+        Button scheduleBtn = new Button(schedule.getStartTime());
+        scheduleBtn.setFont(Font.font("System", FontWeight.BOLD, 24));
+        scheduleBtn.setTextFill(Color.BLACK);
+        scheduleBtn.setCursor(Cursor.HAND);
+        scheduleBtn.setStyle("-fx-background-color: linear-gradient(#FDC830,#F37335);\n" +
+                "    -fx-background-radius: 25;\n" +
+                "    -fx-background-insets: 0;");
+        scheduleBtn.setEffect(new DropShadow());
+
+        btnList.add(scheduleBtn);
         schedules.add(schedule);
         bookedSeat.add(String.join(",", position));
     }

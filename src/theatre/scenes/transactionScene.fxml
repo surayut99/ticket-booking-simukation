@@ -76,8 +76,8 @@
                <children>
                   <GridPane fx:id="gridDetail" prefHeight="275.0" prefWidth="450.0" style="-fx-background-color: rgba(0,0,0,0.5); -fx-background-radius: 10;">
                     <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="359.0" minWidth="10.0" prefWidth="189.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="297.0" minWidth="9.0" prefWidth="191.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="359.0" minWidth="10.0" prefWidth="196.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="297.0" minWidth="9.0" prefWidth="234.0" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -120,26 +120,26 @@
                         <DropShadow />
                      </effect>
                   </GridPane>
-                  <VBox fx:id="accountDetail" prefHeight="275.0" prefWidth="450.0" style="-fx-background-color: rgba(0,0,0,0.5); -fx-background-radius: 10;">
+                  <VBox fx:id="accountDetail" prefHeight="275.0" prefWidth="504.0" style="-fx-background-color: rgba(0,0,0,0.5); -fx-background-radius: 10;">
                      <children>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Username: ???" wrappingWidth="340.6708984375">
-                           <font>
-                              <Font name="System Bold" size="48.0" />
-                           </font>
-                        </Text>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Firstname: ???" wrappingWidth="310.6708984375">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Username: ???" wrappingWidth="450.0">
                            <font>
                               <Font name="System Bold" size="36.0" />
                            </font>
                         </Text>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Lastname: ???" wrappingWidth="320.6708984375">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Firstname: ???" wrappingWidth="450.0">
                            <font>
-                              <Font name="System Bold" size="36.0" />
+                              <Font name="System Bold" size="30.0" />
                            </font>
                         </Text>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Balance: ???" wrappingWidth="282.6708984375">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Lastname: ???" wrappingWidth="450.0">
                            <font>
-                              <Font name="System Bold" size="36.0" />
+                              <Font name="System Bold" size="30.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Balance: ???" wrappingWidth="450.0">
+                           <font>
+                              <Font name="System Bold" size="30.0" />
                            </font>
                         </Text>
                      </children>
@@ -168,17 +168,6 @@
       </Text>
       <HBox alignment="CENTER_RIGHT" layoutX="788.0" layoutY="538.0" spacing="10.0" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="30.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="94.0" style="-fx-background-radius: 25; -fx-background-color: linear-gradient(#5f2c82, #49a09d);" text="TOP-UP" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-               <effect>
-                  <DropShadow />
-               </effect>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
             <Button mnemonicParsing="false" onAction="#actionOnSubmit" prefHeight="48.0" prefWidth="94.0" style="-fx-background-radius: 25; -fx-background-color: linear-gradient(#4A569D, #DC2424);" text="SUBMIT" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />

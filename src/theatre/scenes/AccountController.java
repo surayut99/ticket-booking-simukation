@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -15,6 +16,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import theatre.seat.SeatController;
 import theatre.showingSystem.Schedule;
+import theatre.showingSystem.ShowingSystemCollector;
 import theatre.tools.AccountData.Account;
 import theatre.tools.AccountCollector;
 import theatre.tools.AccountData.SelectedMovies;
@@ -33,6 +35,7 @@ public class AccountController {
     private int theatre;
     private VBox seatBox, contents;
     private List<Schedule> currentSchedule;
+    private ArrayList<SelectedMovies> moviesList;
 
     @FXML
     HBox showTheatre;
@@ -59,7 +62,7 @@ public class AccountController {
         contents.getChildren().add(seatBox);
 
         mainShowContent.prefWidthProperty().bind(scrollPane.widthProperty());
-        mainShowContent.prefHeightProperty().bind(scrollPane.heightProperty());
+//        mainShowContent.prefHeightProperty().bind(scrollPane.heightProperty());
 
         currentAccount = AccountCollector.getCurrentAccount();
         username.setText(currentAccount.getUsername());
@@ -78,22 +81,6 @@ public class AccountController {
         timeline.setOnFinished(e -> parent.getChildren().remove(thisPage));
         timeline.play();
     }
-//
-//    private void printAccountDetail() {
-//        ArrayList<SelectedTheatre> theatres = currentAccount.getSelectedTheatres();
-//        for (SelectedTheatre t : theatres) {
-//            System.out.println("Theatre: " + t.getNo_theatre());
-//            ArrayList<SelectedMovies> movies = t.getSelectedMoviesList();
-//            for (SelectedMovies m : movies) {
-//                System.out.println("\tMovie: " + m.getMovies().getTitle());
-//                ArrayList<Schedule> schedules = m.getSchedules();
-//                for (Schedule s : schedules) {
-//                    System.out.println("\t\tStart Time: " + s.getStartTime());
-//                    System.out.println("\t\tPosition: " + m.getBookedSeatByStartTime(s));
-//                }
-//            }
-//        }
-//    }
 
     @FXML
     public void mouseClickOnShowReservingDetail(MouseEvent event) {
@@ -132,8 +119,6 @@ public class AccountController {
                 break;
             }
         }
-
-        ArrayList<SelectedMovies> moviesList = null;
         if (selectedTheatre != null) {
             moviesList = selectedTheatre.getSelectedMoviesList();
         }
@@ -141,21 +126,17 @@ public class AccountController {
             for (SelectedMovies m : moviesList) {
                 HBox hBox = new HBox(20);
                 ImageView imageView = new ImageView(m.getMovies().getPosterLocation());
-                imageView.setFitHeight(250);
-                imageView.setPreserveRatio(true);
+                imageView.setFitHeight(300);
+                imageView.setFitWidth(200);
+                imageView.setEffect(new DropShadow());
+                imageView.setPreserveRatio(false);
                 hBox.getChildren().add(imageView);
                 currentSchedule = m.getSchedules();
-
-                System.out.println(currentSchedule.size());
 
                 VBox schedules = new VBox(10);
                 schedules.getChildren().addAll(m.getBtnList());
                 for (Button btn : m.getBtnList()) btn.setOnAction(this::actionOnSchedule);
-//                for (Schedule s : currentSchedule) {
-//                    Button schedule = new Button(s.getStartTime());
-//                    schedules.getChildren().add(schedule);
-//                    schedule.setOnAction(this::actionOnSchedule);
-//                }
+
                 hBox.getChildren().add(schedules);
                 reserving.getChildren().add(hBox);
             }
@@ -166,27 +147,19 @@ public class AccountController {
     private void actionOnSchedule(ActionEvent event) {
         String startTime = ((Button) event.getSource()).getText();
         List<VBox> seatList = SeatController.generateSeat(theatre - 1, 60, true, null);
-        for (Schedule s : currentSchedule) {
-            if (s.getStartTime().equals(startTime)) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("personalBooking.fxml"));
-                try {
-                    AnchorPane mainPane = loader.load();
-                    mainPane.prefWidthProperty().bind(mainShowContent.widthProperty());
-                    mainPane.prefHeightProperty().bind(mainShowContent.heightProperty());
-                    PersonalBookingController controller = loader.getController();
-                    controller.setSeatBox(seatList);
-                    controller.setSelectedSchedule(s);
-                    controller.setNo_theatre(theatre - 1);
-                    mainShowContent.getChildren().add(mainPane);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                break;
-            }
-        }
-    }
+        Schedule schedule = ShowingSystemCollector.getShowingSystems()[theatre - 1].getScheduleByStartTime(startTime);
 
-    @FXML private void closeBox(MouseEvent event) {
-        mainShowContent.getChildren().remove(contents);
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("personalBooking.fxml"));
+            AnchorPane mainPane = loader.load();
+            mainPane.prefWidthProperty().bind(mainShowContent.widthProperty());
+            mainPane.prefHeightProperty().bind(mainShowContent.heightProperty());
+            PersonalBookingController controller = loader.getController();
+            controller.setSeatBox(seatList);
+            controller.setSelectedSchedule(schedule);
+            controller.setNo_theatre(theatre - 1);
+            mainShowContent.getChildren().add(mainPane);
+        } catch (IOException e) {e.printStackTrace();}
     }
 }

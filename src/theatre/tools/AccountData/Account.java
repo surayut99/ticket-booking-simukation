@@ -107,11 +107,11 @@ public class Account {
             SelectedTheatre currentTheatre = getSelectedTheatreByNumber(theatre);
             SelectedMovies selectedMovies = getSelectedMovieByObject(currentTheatre, movies);
             int index = selectedMovies.getSchedules().indexOf(schedule);
+            if (index == -1) throw new IllegalArgumentException();
             position = new ArrayList<>(Arrays.asList(selectedMovies.getBookedSeat().get(index).split(",")));
         } catch (IllegalArgumentException e) {
             return new ArrayList<>();
         }
-
         return position;
     }
 

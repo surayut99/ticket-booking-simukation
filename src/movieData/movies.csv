@@ -1,0 +1,30 @@
+status,showing
+title,A star is born
+length,02:16:00
+date,05-12-2018
+path,movieData/a_star_is_born.jpg
+detail,A musician helps a young singer find fame as age and alcoholism send his own career into a downward spiral.
+videoPath,/movieData/trailer/a_star_is_born_trailer.mp4
+
+title,Me before you
+length,01:14:00
+date,02-01-2016
+path,movieData/me_before_you.jpg
+detail,A girl in a small town forms an unlikely bond with a recently-paralyzed man she's taking care of.
+videoPath,/movieData/trailer/me_before_you_trailer.mp4
+
+title,Midnight sun
+length,01:31:00
+date,23-02-2018
+path,movieData/midnight_sun.jpg
+detail,A 17-year-old girl suffers from a condition that prevents her from being out in the sunlight.
+videoPath,/movieData/trailer/midnight_sun_trailer.mp4
+
+status,soon
+title,Last christmas
+length,01:42:00
+date,08-11-2019
+path,movieData/last_christmas.jpg
+detail,Kate is a young woman subscribed to bad decisions. Her last date with disaster? That of having accepted to work as Santa's elf for a department store. However, she meets Tom there. Her life takes a new turn. For Kate, it seems too good to be true.
+videoPath,/movieData/trailer/last_christmas_trailer.mp4
+

@@ -12,6 +12,7 @@ import theatre.tools.AccountData.Account;
 
 import java.io.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,7 +23,7 @@ public class DataController {
 
     public static void loadUserData(){
         try {
-            FileReader reader = new FileReader(new File("src/account_data/accounts.csv"));
+            FileReader reader = new FileReader(new File("src/accountData/accounts.csv"));
             BufferedReader bufferedReader = new BufferedReader(reader);
             String line;
             while ((line = bufferedReader.readLine()) != null) {
@@ -47,7 +48,7 @@ public class DataController {
 
     public static void loadReservingData() {
         try {
-            FileReader reader = new FileReader(new File("src/account_data/BookingData.csv"));
+            FileReader reader = new FileReader(new File("src/accountData/BookingData.csv"));
             BufferedReader bufferedReader = new BufferedReader(reader);
             String line;
             String currentUser = null;
@@ -109,30 +110,47 @@ public class DataController {
 
     //add movie object to MoviesCollector class
     private static void loadMovies() {
-        if (!MovieCollector.moviesList.isEmpty()) return;
-
-        LocalDate date = LocalDate.now();
-        MovieCollector.moviesList.add(new ShowingMovies(
-                "Spider-Man: Homeless", "02:02:02", date, "picture/poster/spider-man-homeless.jpg"
-        ));
-        MovieCollector.moviesList.add(new ShowingMovies(
-                "Boosty And the Beast","01:56:49", date, "picture/poster/booty_and_the_beast.jpg"
-        ));
-        MovieCollector.moviesList.add(new ShowingMovies(
-                "Once Upon Deadpool", "02:34:08", date, "picture/poster/once_upon_deadpool.jpg"
-        ));
+        loadMovieFile();
+    }
 
 
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate dateSoon = LocalDate.parse("09/09/2020", dateTimeFormatter);
-        MovieCollector.moviesList.add(new ComingSoonMovies("INCEPTION", "--:--:--", dateSoon, "picture/poster/inception.jpg"));
+    private static void loadMovieFile() {
+        try {
+            FileReader reader = new FileReader(new File("src/movieData/movies.csv"));
+            BufferedReader bufferedReader = new BufferedReader(reader);
+            String line;
+            String status = null;
+            List<String> data = new ArrayList<>();
+            while ((line = bufferedReader.readLine()) != null) {
+                if (line.contains("status")) {
+                    String[] lines = line.split(",");
+                    status = lines[1];
+                    continue;
+                }
+                if (line.isEmpty()) {
+                    String dateStr = data.get(2);
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                    LocalDate dateTime = LocalDate.parse(dateStr, formatter);
+                    if (status.equals("showing")) {
+                        MovieCollector.moviesList.add(new ShowingMovies(data.get(0), data.get(1), dateTime, data.get(3), data.get(4), data.get(5)));
+                    }
+                    else if (status.equals("soon")) {
+                        MovieCollector.moviesList.add(new ComingSoonMovies(data.get(0), data.get(1), dateTime, data.get(3), data.get(4), data.get(5)));
+                    }
+                    data.clear();
+                    continue;
+                }
+                String[] lines = line.split(",");
+                data.add(lines[1]);
+            }
+        } catch (IOException e) {e.printStackTrace();}
     }
 
     //create and add schedule for each showing system.
     private static void loadScheduleShowtime() {
-        Movies spiderman = MovieCollector.findMovie("spider");
-        Movies boosty = MovieCollector.findMovie("boosty");
-        Movies deadpool = MovieCollector.findMovie("deadpool");
+        Movies spiderman = MovieCollector.findMovie("A star is born");
+        Movies boosty = MovieCollector.findMovie("Me before you");
+        Movies deadpool = MovieCollector.findMovie("Midnight sun");
 
         ShowingSystemCollector.addScheduleMovies(0, spiderman, spiderman, boosty, deadpool, boosty, deadpool, deadpool);
         ShowingSystemCollector.addScheduleMovies(1, deadpool, boosty, boosty, spiderman, deadpool, spiderman);
@@ -146,8 +164,8 @@ public class DataController {
         String username = AccountCollector.getCurrentAccount().getUsername();
         boolean edited = false;
         try {
-            FileWriter writer = new FileWriter(new File("src/account_data/tmpBookingData.csv"));
-            FileReader reader = new FileReader((new File("src/account_data/BookingData.csv")));
+            FileWriter writer = new FileWriter(new File("src/accountData/tmpBookingData.csv"));
+            FileReader reader = new FileReader((new File("src/accountData/BookingData.csv")));
             BufferedReader bufferedReader = new BufferedReader(reader);
             String line;
 
@@ -214,8 +232,8 @@ public class DataController {
             reader.close();
             writer.close();
             bufferedReader.close();
-            File file = new File("src/account_data/tmpBookingData.csv");
-            File destFile = new File("src/account_data/BookingData.csv");
+            File file = new File("src/accountData/tmpBookingData.csv");
+            File destFile = new File("src/accountData/BookingData.csv");
             destFile.delete();
             file.renameTo(destFile);
         } catch (IOException e) {
@@ -226,11 +244,13 @@ public class DataController {
     public static void removeReservingData(String theatre, String oldVersion, String newVersion, String startTime, String titleMovie) {
         List<String> oldData = new ArrayList<>();
         String username = AccountCollector.getCurrentAccount().getUsername();
+
         try {
-            FileWriter writer = new FileWriter(new File("src/account_data/tmpBookingData.csv"));
-            FileReader reader = new FileReader((new File("src/account_data/BookingData.csv")));
+            FileWriter writer = new FileWriter(new File("src/accountData/tmpBookingData.csv"));
+            FileReader reader = new FileReader((new File("src/accountData/BookingData.csv")));
             BufferedReader bufferedReader = new BufferedReader(reader);
             String line;
+            boolean edited = false;
 
             while ((line = bufferedReader.readLine()) != null) {
                 if (line.equals("username," + username)) {
@@ -249,31 +269,57 @@ public class DataController {
 
                             for (int i = 0; i < oldData.size(); i++) {
                                 if (oldData.get(i).contains("movie," + titleMovie)) {
-                                    if (oldData.get(i + 1).contains("schedule," + startTime)) {
-                                        if (newVersion.equals("")) {
-                                            for (int j = 0; j < 2; j++) {
-                                                oldData.remove(i + 1);
+                                    for (int j = i + 1; j < oldData.size(); j++) {
+                                        if (oldData.get(j).contains("schedule," + startTime)) {
+                                            if (newVersion.equals("")) {
+                                                oldData.remove(j);
+                                                oldData.remove(j);
                                             }
-                                            if (oldData.size() == i + 1) {
-                                                oldData.remove(i);
-                                                break;
+                                            else {
+                                                String data = oldData.get(++j);
+                                                data =  data.replaceAll(oldVersion, newVersion);
+                                                oldData.set(j, data);
                                             }
-                                            if (oldData.get(i + 1).contains("schedule")) {
-                                                break;
+                                            edited = true;
+
+                                            if (j != oldData.size()) {
+                                                if (oldData.get(j).contains("movie,")) {
+                                                    oldData.remove(j -1);
+                                                }
                                             }
-                                            oldData.remove(i);
-                                        }
-                                        else {
-                                            i = i + 2;
-                                            String data = oldData.get(i);
-                                            String newData = data.replaceAll(oldVersion, newVersion);
-                                            oldData.set(i, newData);
-                                            break;
+                                            else {
+                                                if (oldData.size() == 2) {
+                                                    oldData.remove(j - 1);
+                                                    break;
+                                                }
+                                            }
                                         }
                                     }
+                                    if (edited) break;
+//                                    if (oldData.get(i + 1).contains("schedule," + startTime)) {
+//                                        if (newVersion.equals("")) {
+//                                            for (int j = 0; j < 2; j++) {
+//                                                oldData.remove(i + 1);
+//                                            }
+//                                            if (oldData.size() == i + 1) {
+//                                                oldData.remove(i);
+//                                                break;
+//                                            }
+//                                            if (oldData.get(i + 1).contains("schedule")) {
+//                                                break;
+//                                            }
+//                                            oldData.remove(i);
+//                                        }
+//                                        else {
+//                                            i = i + 2;
+//                                            String data = oldData.get(i);
+//                                            String newData = data.replaceAll(oldVersion, newVersion);
+//                                            oldData.set(i, newData);
+//                                            break;
+//                                        }
+//                                    }
                                 }
                             }
-
                             String data = oldData.size() == 1? "" : String.join("\n", oldData) + "\n";
                             writer.write(data);
                             writer.flush();
@@ -289,8 +335,8 @@ public class DataController {
             reader.close();
             writer.close();
             bufferedReader.close();
-            File file = new File("src/account_data/tmpBookingData.csv");
-            File destFile = new File("src/account_data/BookingData.csv");
+            File file = new File("src/accountData/tmpBookingData.csv");
+            File destFile = new File("src/accountData/BookingData.csv");
             destFile.delete();
             file.renameTo(destFile);
         }catch (IOException e) {
@@ -300,8 +346,8 @@ public class DataController {
 
     public static void editBalance(String username, double balance) {
         try {
-            FileWriter writer = new FileWriter(new File("src/account_data/tmp_accounts.csv"));
-            FileReader reader = new FileReader(new File("src/account_data/accounts.csv"));
+            FileWriter writer = new FileWriter(new File("src/accountData/tmp_accounts.csv"));
+            FileReader reader = new FileReader(new File("src/accountData/accounts.csv"));
             BufferedReader bufferedReader = new BufferedReader(reader);
             String line;
             while ((line = bufferedReader.readLine()) != null) {
@@ -322,8 +368,8 @@ public class DataController {
             reader.close();
             bufferedReader.close();
 
-            File newFile = new File("src/account_data/tmp_accounts.csv");
-            File oldFile = new File("src/account_data/accounts.csv");
+            File newFile = new File("src/accountData/tmp_accounts.csv");
+            File oldFile = new File("src/accountData/accounts.csv");
             oldFile.delete();
             newFile.renameTo(oldFile);
         } catch (IOException e) {

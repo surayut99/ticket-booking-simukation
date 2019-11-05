@@ -3,6 +3,19 @@
     -fx-background-position: center center;
 }
 
+.topAboutScene {
+    -fx-background-image: url('topBacgroundAboutScene.jpg');
+    -fx-background-position: center center;
+}
+
+.backgroundAboutScene {
+    -fx-background-image: url('wallpaperAbout.jpg');
+    -fx-background-attachment: fixed;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}
+
 .backgroundShowMovies{
     -fx-background-image: url('bachgroundShowMovies.png');
     -fx-background-position: 50% 50% ;

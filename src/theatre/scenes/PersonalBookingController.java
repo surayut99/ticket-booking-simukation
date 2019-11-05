@@ -117,7 +117,6 @@ public class PersonalBookingController {
         Account account = AccountCollector.getCurrentAccount();
         List<String> userSeatPosition = account.getUserSeatPositions(no_theatre, selectedSchedule.getMovies(), selectedSchedule);
         for (String p : userSeatPosition) {
-            System.out.println(p);
             int row = p.charAt(0) - 65;
             int column = Integer.parseInt(p.substring(1)) - 1;
             AnchorPane userSeat = SeatController.findPosition(showSeat, row, column, no_theatre);

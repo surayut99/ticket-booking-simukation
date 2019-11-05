@@ -8,30 +8,30 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="thisPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: rgba(0,0,0,0.5);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="theatre.scenes.PersonalBookingController">
+<AnchorPane fx:id="thisPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: rgba(0,0,0,0.8);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="theatre.scenes.PersonalBookingController">
    <children>
       <VBox alignment="TOP_CENTER" layoutX="495.0" layoutY="184.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox prefWidth="1000.0" spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#actionOnClose" text="close">
+                  <Button mnemonicParsing="false" onAction="#actionOnClose" style="-fx-background-radius: 25;" text="CLOSE">
                      <font>
-                        <Font size="36.0" />
+                        <Font name="System Bold" size="36.0" />
                      </font>
                   </Button>
-                  <Button fx:id="editBtn" mnemonicParsing="false" onAction="#actionOnEdit" text="edit">
+                  <Button fx:id="editBtn" mnemonicParsing="false" onAction="#actionOnEdit" style="-fx-background-radius: 25;" text="EDIT">
                      <font>
-                        <Font size="36.0" />
+                        <Font name="System Bold" size="36.0" />
                      </font>
                   </Button>
-                  <Button fx:id="saveBtn" disable="true" mnemonicParsing="false" onAction="#actionOnSave" text="save">
+                  <Button fx:id="saveBtn" disable="true" mnemonicParsing="false" onAction="#actionOnSave" style="-fx-background-radius: 25;" text="SAVE">
                      <font>
-                        <Font size="36.0" />
+                        <Font name="System Bold" size="36.0" />
                      </font>
                   </Button>
                </children>
             </HBox>
-            <Label alignment="CENTER" prefWidth="700.0" style="-fx-background-color: blue; -fx-background-radius: 20;" text="Screen" textAlignment="CENTER" textFill="WHITE">
+            <Label alignment="CENTER" prefWidth="700.0" style="-fx-background-radius: 20;" styleClass="screenTheatre" stylesheets="@../../picture/style.css" text="Screen" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

@@ -60,6 +60,7 @@ public class CheckingController {
                 title.setText(movie.getTitle());
                 date.setText("Release Date: " + ((ShowingMovies) movie).getCome_inDate().toString());
                 length.setText("Length: " + movie.getLength());
+                description.setText(movie.getDescription());
                 PageController.getStackWaringMessages().push(null);
                 analyseData(AccountCollector.getCurrentAccount() == null);
             }

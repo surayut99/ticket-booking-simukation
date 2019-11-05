@@ -7,13 +7,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import theatre.movies.ComingSoonMovies;
 import theatre.movies.MovieCollector;
@@ -22,7 +23,7 @@ import theatre.movies.ShowingMovies;
 import theatre.showingSystem.*;
 import theatre.tools.*;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class HomepageController {
@@ -227,6 +228,51 @@ public class HomepageController {
             return;
         }
         translateRegister();
+    }
+
+    @FXML
+    private void mouseClickOnAboutMe(MouseEvent event) {
+        try {
+            AnchorPane parent = (AnchorPane) PageController.getStackPages().firstElement();
+            AnchorPane accountPane = FXMLLoader.load(getClass().getResource("/theatre/scenes/aboutScene.fxml"));
+            accountPane.prefHeightProperty().bind(parent.prefHeightProperty());
+            accountPane.prefWidthProperty().bind(parent.prefWidthProperty());
+            accountPane.translateYProperty().set(parent.getHeight());
+            parent.getChildren().add(accountPane);
+            Timeline timeline = EffectController.createTranslateTimeLine(accountPane.translateYProperty(), 0, 0.25);
+            timeline.play();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void viewCSVFile(ActionEvent event) {
+        StringBuilder content = new StringBuilder();
+        try {
+            FileReader reader = new FileReader(new File("src/accountData/BookingData.csv"));
+            BufferedReader bufferedReader = new BufferedReader(reader);
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                content.append(line).append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("readCSVSecene.fxml"));
+            AnchorPane r = loader.load();
+            TextArea area = (TextArea) r.getChildren().get(0);
+            area.setText(content.toString());
+            Stage stage = new Stage();
+            stage.setScene(new Scene(r));
+            ViewCSVController viewCSVController = loader.getController();
+            viewCSVController.setContent(content.toString());
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

@@ -1,0 +1,60 @@
+username,testAcc
+theatre,1
+	movie,Me before you
+		schedule,15:02
+		positions,B7 C6
+theatre,3
+	movie,Midnight sun
+		schedule,15:46
+		positions,D4 D5 D6 D7
+theatre,4
+	movie,Me before you
+		schedule,20:03
+		positions,D5
+
+username,qwerty
+theatre,2
+	movie,Midnight sun
+		schedule,17:15
+		positions,D7 D8
+theatre,3
+	movie,Midnight sun
+		schedule,15:46
+		positions,D10 D11 D12
+
+username,userFunny
+theatre,1
+	movie,A star is born
+		schedule,12:31
+		positions,C3 C4 C5 C6
+	movie,Me before you
+		schedule,15:02
+		positions,E3 E4 E5
+	movie,Midnight sun
+		schedule,19:46
+		positions,A5 B5 D4 E5
+theatre,2
+	movie,Me before you
+		schedule,11:46
+		positions,G4 H3 H4
+theatre,3
+	movie,Midnight sun
+		schedule,14:00
+		positions,A6 D2 D3 D4 D5
+	movie,Me before you
+		schedule,10:00
+		positions,E3 E4 E5 H2 H3 H4
+theatre,4
+	movie,A star is born
+		schedule,11:46
+		positions,D3 D4 D5
+theatre,5
+	movie,Midnight sun
+		schedule,18:00
+		positions,B5 B6
+		schedule,19:46
+		positions,E4 E5
+	movie,A star is born
+		schedule,10:00
+		positions,D3 D4 D5 D6
+
