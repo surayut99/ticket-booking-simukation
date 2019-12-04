@@ -1,42 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="thisPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: rgba(0,0,0,0.8);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="theatre.scenes.PersonalBookingController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="theatre.scenes.PersonalBookingController">
    <children>
       <VBox alignment="TOP_CENTER" layoutX="495.0" layoutY="184.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox prefWidth="1000.0" spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#actionOnClose" style="-fx-background-radius: 25;" text="CLOSE">
+                  <Button mnemonicParsing="false" onAction="#actionOnClose" prefHeight="50.0" style="-fx-background-color: linear-gradient(#F37335, #FDC830); -fx-background-radius: 25;" text="CLOSE">
                      <font>
-                        <Font name="System Bold" size="36.0" />
+                        <Font name="System Bold" size="23.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <DropShadow />
+                     </effect>
                   </Button>
-                  <Button fx:id="editBtn" mnemonicParsing="false" onAction="#actionOnEdit" style="-fx-background-radius: 25;" text="EDIT">
+                  <Button fx:id="editBtn" mnemonicParsing="false" onAction="#actionOnEdit" prefHeight="50.0" style="-fx-background-color: linear-gradient(#F37335, #FDC830); -fx-background-radius: 25;" text="EDIT">
                      <font>
-                        <Font name="System Bold" size="36.0" />
+                        <Font name="System Bold" size="23.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <DropShadow />
+                     </effect>
                   </Button>
-                  <Button fx:id="saveBtn" disable="true" mnemonicParsing="false" onAction="#actionOnSave" style="-fx-background-radius: 25;" text="SAVE">
+                  <Button fx:id="saveBtn" disable="true" mnemonicParsing="false" onAction="#actionOnSave" prefHeight="50.0" style="-fx-background-color: linear-gradient(#F37335, #FDC830); -fx-background-radius: 25;" text="SAVE">
                      <font>
-                        <Font name="System Bold" size="36.0" />
+                        <Font name="System Bold" size="23.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <DropShadow>
+                           <input>
+                              <ColorAdjust hue="0.41" />
+                           </input>
+                        </DropShadow>
+                     </effect>
                   </Button>
                </children>
             </HBox>
-            <Label alignment="CENTER" prefWidth="700.0" style="-fx-background-radius: 20;" styleClass="screenTheatre" stylesheets="@../../picture/style.css" text="Screen" textAlignment="CENTER">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
+            <Label>
+               <graphic>
+                  <VBox alignment="CENTER" spacing="25.0" style="-fx-background-color: rgba(0,0,0,0.7); -fx-background-radius: 25;">
+                     <children>
+                        <Label alignment="CENTER" prefWidth="700.0" style="-fx-background-radius: 20;" styleClass="screenTheatre" stylesheets="@../../picture/style.css" text="Screen" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </Label>
+                        <VBox fx:id="showSeat" alignment="CENTER" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+               </graphic>
             </Label>
-            <VBox fx:id="showSeat" alignment="CENTER" />
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

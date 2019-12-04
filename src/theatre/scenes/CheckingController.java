@@ -22,6 +22,7 @@ import theatre.tools.AccountCollector;
 import theatre.tools.EffectController;
 import theatre.tools.PageController;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -56,7 +57,7 @@ public class CheckingController {
                 thisPage.prefWidthProperty().bind(parent.widthProperty());
                 thisPage.prefHeightProperty().bind(parent.heightProperty());
 
-                poster.setImage(new Image(movie.getPosterLocation()));
+                poster.setImage(new Image(new File(movie.getPosterLocation()).toURI().toString()));
                 title.setText(movie.getTitle());
                 date.setText("Release Date: " + ((ShowingMovies) movie).getCome_inDate().toString());
                 length.setText("Length: " + movie.getLength());

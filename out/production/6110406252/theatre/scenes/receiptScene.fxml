@@ -2,20 +2,21 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="446.0" prefWidth="576.0" styleClass="background" stylesheets="@../../picture/background/setBackground.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="theatre.scenes.ReceiptController">
+<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="446.0" prefWidth="576.0" styleClass="backgroundAboutScene" stylesheets="@../../picture/background/setBackground.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="theatre.scenes.ReceiptController">
    <children>
       <ImageView fx:id="poster" fitHeight="263.0" fitWidth="188.0" layoutX="14.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="15.0">
          <effect>
             <DropShadow />
          </effect>
       </ImageView>
-      <VBox fx:id="userBox" layoutX="13.0" layoutY="14.0" prefHeight="124.0" prefWidth="553.0" style="-fx-background-color: rgba(0,0,0,0.4); -fx-background-radius: 10;" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="10.0">
+      <VBox fx:id="userBox" layoutX="13.0" layoutY="14.0" prefHeight="124.0" prefWidth="553.0" style="-fx-background-radius: 10;" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="10.0">
          <children>
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Username: " wrappingWidth="526.6708984375">
                <font>
@@ -45,19 +46,19 @@
             <DropShadow />
          </effect>
       </VBox>
-      <VBox fx:id="movieBox" layoutX="209.0" layoutY="154.0" prefHeight="95.0" prefWidth="355.0" style="-fx-background-color: rgba(0,0,0,0.4); -fx-background-radius: 10;" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="10.0">
+      <VBox fx:id="movieBox" layoutX="210.0" layoutY="159.0" prefHeight="95.0" prefWidth="355.0" style="-fx-background-color: rgba(255,255,255,0.4); -fx-background-radius: 10;" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="10.0">
          <children>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Title: " wrappingWidth="334.6708984375">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Title: " wrappingWidth="334.6708984375">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Text>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Length: " wrappingWidth="334.6708984375">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Length: " wrappingWidth="334.6708984375">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Text>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Release: " wrappingWidth="334.6708984375">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Release: " wrappingWidth="334.6708984375">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -70,34 +71,34 @@
             <DropShadow />
          </effect>
       </VBox>
-      <VBox fx:id="theatreBox" layoutX="209.0" layoutY="255.0" prefHeight="167.0" prefWidth="355.0" style="-fx-background-color: rgba(0,0,0,0.4); -fx-background-radius: 10;" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="10.0">
+      <VBox fx:id="theatreBox" layoutX="210.0" layoutY="246.0" prefHeight="167.0" prefWidth="355.0" style="-fx-background-color: rgba(255,255,255,0.4); -fx-background-radius: 10;" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="10.0">
          <children>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Theatre: " wrappingWidth="334.6708984375">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Theatre: " wrappingWidth="334.6708984375">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Text>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="system: " wrappingWidth="334.6708984375">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="system: " wrappingWidth="334.6708984375">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Text>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="start time: " wrappingWidth="334.6708984375">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="start time: " wrappingWidth="334.6708984375">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Text>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="seat(s): " wrappingWidth="334.6708984375">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="seat(s): " wrappingWidth="334.6708984375">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Text>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="334.6708984375">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="334.6708984375">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Text>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Total cost: " wrappingWidth="334.6708984375">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total cost: " wrappingWidth="334.6708984375">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -110,5 +111,13 @@
             <DropShadow />
          </effect>
       </VBox>
+      <Text fx:id="dateTime" fill="RED" layoutX="417.0" layoutY="438.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="148.6708984375" AnchorPane.bottomAnchor="0.0">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <effect>
+            <Glow level="0.5" />
+         </effect>
+      </Text>
    </children>
 </AnchorPane>

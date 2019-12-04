@@ -11,7 +11,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RegisterChecker {
-    public static void check(TextChecker checker, ObservableList<Node> nodes) throws Exception {
+    public static void check(TextChecker checker, ObservableList<Node> nodes) throws IllegalArgumentException {
         for (Node node : nodes) {
             if (node instanceof TextField) {
                 TextField field = (TextField) node;
@@ -24,7 +24,7 @@ public class RegisterChecker {
         if (!textFields.get(3).getText().equals(textFields.get(4).getText())) throw new IllegalArgumentException("Password is not matched, check and try again.");
     }
 
-    public static void checkForm(ArrayList<TextField> fields) throws Exception {
+    public static void checkForm(ArrayList<TextField> fields) {
         TextField username = fields.get(2);
         TextField password = fields.get(3);
         TextField confirmPassword = fields.get(4);
@@ -39,7 +39,7 @@ public class RegisterChecker {
         if (matchPassword.find() || matchConfirmPass.find()) throw new IllegalArgumentException("Your password is invalid, contains special character.");
     }
 
-    private static void checkSameUsername(String username) throws IllegalArgumentException{
+    private static void checkSameUsername(String username) {
         Set<String> usernameSet = AccountCollector.getKeySet();
         if (usernameSet.contains(username)) throw new IllegalArgumentException("Username is used, check and try again.");
     }

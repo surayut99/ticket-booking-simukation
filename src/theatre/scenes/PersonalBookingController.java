@@ -2,9 +2,11 @@ package theatre.scenes;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -29,11 +31,12 @@ public class PersonalBookingController {
     private List<VBox> seatBox;
     private List<AnchorPane> selectedSeat;
     private int no_theatre;
+    private ScrollPane scrollPane;
+    private AnchorPane tempAnchorPane;
+    private EventHandler<MouseEvent> refreshEvent;
 
     @FXML
     VBox showSeat;
-    @FXML
-    AnchorPane thisPage;
     @FXML
     Button editBtn, saveBtn;
 
@@ -57,8 +60,11 @@ public class PersonalBookingController {
 
     @FXML
     public void actionOnClose(ActionEvent event) {
-        AnchorPane parent = (AnchorPane) thisPage.getParent();
-        parent.getChildren().remove(thisPage);
+        scrollPane.setContent(tempAnchorPane);
+        scrollPane.setStyle(null);
+
+        refreshEvent.handle(null);
+        refreshEvent.handle(null);
     }
 
     @FXML
@@ -83,7 +89,6 @@ public class PersonalBookingController {
             seatPosition.add(l.getText());
         }
 
-
         Account account = AccountCollector.getCurrentAccount();
         List<String> userSeatPosition = account.getUserSeatPositions(no_theatre, selectedSchedule.getMovies(), selectedSchedule);
         String oldData = String.join(" ", userSeatPosition);
@@ -93,6 +98,12 @@ public class PersonalBookingController {
         selectedSchedule.delReservedSeat(arrPosition);
         account.removeBooking(no_theatre, selectedSchedule.getMovies().getTitle(), selectedSchedule, arrPosition);
         DataController.removeReservingData(Integer.toString(no_theatre + 1), oldData, newData, selectedSchedule.getStartTime(), selectedSchedule.getMovies().getTitle());
+
+        try {
+            account.getSelectedTheatreByNumber(no_theatre);
+        } catch (IllegalArgumentException e) {
+            editBtn.setDisable(true);
+        }
     }
 
     @FXML
@@ -140,5 +151,17 @@ public class PersonalBookingController {
 
     public void setNo_theatre(int no_theatre) {
         this.no_theatre = no_theatre;
+    }
+
+    public void setScrollPane(ScrollPane scrollPane) {
+        this.scrollPane = scrollPane;
+    }
+
+    public void setTempAnchorPane(AnchorPane tempAnchorPane) {
+        this.tempAnchorPane = tempAnchorPane;
+    }
+
+    public void setRefreshEvent(EventHandler<MouseEvent> refreshEvent) {
+        this.refreshEvent = refreshEvent;
     }
 }

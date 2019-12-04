@@ -1,9 +1,12 @@
 package theatre.scenes;
 
+import javafx.animation.FadeTransition;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -18,6 +21,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import theatre.movies.Movies;
 import theatre.movies.ShowingMovies;
 import theatre.showingSystem.Schedule;
@@ -36,6 +40,7 @@ public class TransactionController {
     private ArrayList<String> positions;
     private Schedule schedule;
     private Account currentAccount;
+    private ApplicationDisplay applicationDisplay;
 
     @FXML
     GridPane gridDetail;
@@ -74,7 +79,12 @@ public class TransactionController {
                     gridDetail.add(text, 1, i);
                 }
 
-                for (int i = 0; i < 4; i++) ((Text) accountDetail.getChildren().get(i)).setText(accountData[i]);
+                ObservableList<Node> list = accountDetail.getChildren();
+                for (int i = 0; i < 4; i++)
+                    ((Text) list.get(i)).setText(accountData[i]);
+
+                applicationDisplay = new ApplicationDisplay((Text) list.get(3));
+                currentAccount.addObserver(applicationDisplay);
 
                 ScrollPane parent = PageController.getMainShowContent();
                 AnchorPane thisPage = (AnchorPane) PageController.getStackPages().peek();
@@ -99,7 +109,6 @@ public class TransactionController {
         if (button.getText().equals("Yes")) {
             ArrayList<String> oldPositionList = currentAccount.getUserSeatPositions(no_Theatre - 1, movie, schedule);
 
-
             try {
                 currentAccount.purchase(totalCost);
                 String[] arrPosition = positions.toArray(new String[positions.size()]);
@@ -118,6 +127,13 @@ public class TransactionController {
                 showReceipt();
             } catch (IllegalArgumentException e) {
                 warningMessage.setText(e.getMessage());
+                FadeTransition fadeShow = EffectController.createFadeTransition(warningMessage, 0.5, 1);
+                fadeShow.play();
+                fadeShow.setOnFinished(v -> {
+                    FadeTransition fadeout = EffectController.createFadeTransition(warningMessage, 0.5, 0);
+                    fadeout.setDelay(Duration.seconds(3));
+                    fadeout.play();
+                });
             }
         }
     }

@@ -23,7 +23,7 @@ public class DataController {
 
     public static void loadUserData(){
         try {
-            FileReader reader = new FileReader(new File("src/accountData/accounts.csv"));
+            FileReader reader = new FileReader(new File("data/accountData/accounts.csv"));
             BufferedReader bufferedReader = new BufferedReader(reader);
             String line;
             while ((line = bufferedReader.readLine()) != null) {
@@ -48,7 +48,7 @@ public class DataController {
 
     public static void loadReservingData() {
         try {
-            FileReader reader = new FileReader(new File("src/accountData/BookingData.csv"));
+            FileReader reader = new FileReader(new File("data/accountData/BookingData.csv"));
             BufferedReader bufferedReader = new BufferedReader(reader);
             String line;
             String currentUser = null;
@@ -104,19 +104,14 @@ public class DataController {
             Seat[][] seats = SeatController.createSeatArray(patternSeat[i], numSeat[i][0], numSeat[i][1], 200);
             ShowingSystemCollector.addShowingSystem(i, 20, systemTypes[i], seats);
         }
-        loadMovies();
+        loadMovieFile();
         loadScheduleShowtime();
     }
 
     //add movie object to MoviesCollector class
-    private static void loadMovies() {
-        loadMovieFile();
-    }
-
-
     private static void loadMovieFile() {
         try {
-            FileReader reader = new FileReader(new File("src/movieData/movies.csv"));
+            FileReader reader = new FileReader(new File("data/movieData/movies.csv"));
             BufferedReader bufferedReader = new BufferedReader(reader);
             String line;
             String status = null;
@@ -148,15 +143,15 @@ public class DataController {
 
     //create and add schedule for each showing system.
     private static void loadScheduleShowtime() {
-        Movies spiderman = MovieCollector.findMovie("A star is born");
-        Movies boosty = MovieCollector.findMovie("Me before you");
-        Movies deadpool = MovieCollector.findMovie("Midnight sun");
+        Movies a_star_is_born = MovieCollector.findMovie("A star is born");
+        Movies me_before_you = MovieCollector.findMovie("Me before you");
+        Movies midnight_sun = MovieCollector.findMovie("Midnight sun");
 
-        ShowingSystemCollector.addScheduleMovies(0, spiderman, spiderman, boosty, deadpool, boosty, deadpool, deadpool);
-        ShowingSystemCollector.addScheduleMovies(1, deadpool, boosty, boosty, spiderman, deadpool, spiderman);
-        ShowingSystemCollector.addScheduleMovies(2, boosty, spiderman, deadpool, deadpool, boosty, boosty);
-        ShowingSystemCollector.addScheduleMovies(3, deadpool, spiderman, deadpool, spiderman, boosty, boosty);
-        ShowingSystemCollector.addScheduleMovies(4, spiderman, boosty, spiderman, boosty, deadpool, deadpool);
+        ShowingSystemCollector.addScheduleMovies(0, a_star_is_born, a_star_is_born, me_before_you, midnight_sun, me_before_you, midnight_sun, midnight_sun);
+        ShowingSystemCollector.addScheduleMovies(1, midnight_sun, me_before_you, me_before_you, a_star_is_born, midnight_sun, a_star_is_born);
+        ShowingSystemCollector.addScheduleMovies(2, me_before_you, a_star_is_born, midnight_sun, midnight_sun, me_before_you, me_before_you);
+        ShowingSystemCollector.addScheduleMovies(3, midnight_sun, a_star_is_born, midnight_sun, a_star_is_born, me_before_you, me_before_you);
+        ShowingSystemCollector.addScheduleMovies(4, a_star_is_born, me_before_you, a_star_is_born, me_before_you, midnight_sun, midnight_sun);
     }
 
     public static void editReservingData(String theatre, String oldVersion, String newVersion, String startTime, String titleMovie) {
@@ -164,8 +159,8 @@ public class DataController {
         String username = AccountCollector.getCurrentAccount().getUsername();
         boolean edited = false;
         try {
-            FileWriter writer = new FileWriter(new File("src/accountData/tmpBookingData.csv"));
-            FileReader reader = new FileReader((new File("src/accountData/BookingData.csv")));
+            FileWriter writer = new FileWriter(new File("data/accountData/tmpBookingData.csv"));
+            FileReader reader = new FileReader((new File("data/accountData/BookingData.csv")));
             BufferedReader bufferedReader = new BufferedReader(reader);
             String line;
 
@@ -232,8 +227,8 @@ public class DataController {
             reader.close();
             writer.close();
             bufferedReader.close();
-            File file = new File("src/accountData/tmpBookingData.csv");
-            File destFile = new File("src/accountData/BookingData.csv");
+            File file = new File("data/accountData/tmpBookingData.csv");
+            File destFile = new File("data/accountData/BookingData.csv");
             destFile.delete();
             file.renameTo(destFile);
         } catch (IOException e) {
@@ -246,8 +241,8 @@ public class DataController {
         String username = AccountCollector.getCurrentAccount().getUsername();
 
         try {
-            FileWriter writer = new FileWriter(new File("src/accountData/tmpBookingData.csv"));
-            FileReader reader = new FileReader((new File("src/accountData/BookingData.csv")));
+            FileWriter writer = new FileWriter(new File("data/accountData/tmpBookingData.csv"));
+            FileReader reader = new FileReader((new File("data/accountData/BookingData.csv")));
             BufferedReader bufferedReader = new BufferedReader(reader);
             String line;
             boolean edited = false;
@@ -335,8 +330,8 @@ public class DataController {
             reader.close();
             writer.close();
             bufferedReader.close();
-            File file = new File("src/accountData/tmpBookingData.csv");
-            File destFile = new File("src/accountData/BookingData.csv");
+            File file = new File("data/accountData/tmpBookingData.csv");
+            File destFile = new File("data/accountData/BookingData.csv");
             destFile.delete();
             file.renameTo(destFile);
         }catch (IOException e) {
@@ -346,8 +341,8 @@ public class DataController {
 
     public static void editBalance(String username, double balance) {
         try {
-            FileWriter writer = new FileWriter(new File("src/accountData/tmp_accounts.csv"));
-            FileReader reader = new FileReader(new File("src/accountData/accounts.csv"));
+            FileWriter writer = new FileWriter(new File("data/accountData/tmp_accounts.csv"));
+            FileReader reader = new FileReader(new File("data/accountData/accounts.csv"));
             BufferedReader bufferedReader = new BufferedReader(reader);
             String line;
             while ((line = bufferedReader.readLine()) != null) {
@@ -368,8 +363,8 @@ public class DataController {
             reader.close();
             bufferedReader.close();
 
-            File newFile = new File("src/accountData/tmp_accounts.csv");
-            File oldFile = new File("src/accountData/accounts.csv");
+            File newFile = new File("data/accountData/tmp_accounts.csv");
+            File oldFile = new File("data/accountData/accounts.csv");
             oldFile.delete();
             newFile.renameTo(oldFile);
         } catch (IOException e) {

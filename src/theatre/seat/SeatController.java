@@ -45,17 +45,17 @@ public class SeatController{
     private static Seat createSeatObject(String type, String position, double startPrice) {
         switch (type) {
             case "Premium":
-                PremiumSeat premiumSeat = new PremiumSeat(type, startPrice, "picture/seat/premium.png", position, false);
+                PremiumSeat premiumSeat = new PremiumSeat(type, startPrice, "/picture/seat/premium.png", position, false);
                 premiumSeat.increasePrice();
                 return premiumSeat;
 
             case "VIP":
-                VIPSeat vipSeat = new VIPSeat(type, startPrice, "picture/seat/vip.png", position, false);
+                VIPSeat vipSeat = new VIPSeat(type, startPrice, "/picture/seat/vip.png", position, false);
                 vipSeat.increasePrice();
                 return vipSeat;
 
             default:
-                return new Seat(type, startPrice, "picture/seat/normal.png", position, false);
+                return new Seat(type, startPrice, "/picture/seat/normal.png", position, false);
         }
     }
 

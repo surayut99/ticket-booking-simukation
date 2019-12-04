@@ -1,0 +1,41 @@
+username,testAcc
+theatre,3
+	movie,Me before you
+		schedule,10:00
+		positions,B6 B7 B8
+theatre,4
+	movie,Midnight sun
+		schedule,14:17
+		positions,A3 A4 A5 A6
+
+username,userFunny
+theatre,1
+	movie,Midnight sun
+		schedule,21:32
+		positions,B4 B5 B7
+theatre,3
+	movie,Midnight sun
+		schedule,14:00
+		positions,F10 F6 F8 F9
+	movie,A star is born
+		schedule,11:29
+		positions,D6 D8 E6
+theatre,4
+	movie,Midnight sun
+		schedule,10:00
+		positions,B4 C4
+		schedule,14:17
+		positions,B4 B5 B6
+
+username,newAcc
+
+username,myUsername
+
+username,myUserName
+
+username,finalUser
+theatre,3
+	movie,Midnight sun
+		schedule,14:00
+		positions,C5 C6 C7
+

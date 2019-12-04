@@ -1,6 +1,5 @@
 package theatre.tools;
 
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -47,12 +46,6 @@ public class PageController {
     public static Node peakPage() {
         return stackPages.peek();
     }
-
-//    public static AnchorPane createWarningMessage() {
-//        String topic = "You have just done something on this page.";
-//        String description = "If you go back, your data you did will lose.";
-//        return NodeCreator.createWarningAnchorPane(topic, description);
-//    }
 
     public static boolean hasWarning() {
         for (AnchorPane anchorPane : stackWaringMessages) {

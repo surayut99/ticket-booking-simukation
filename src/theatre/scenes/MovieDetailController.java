@@ -1,5 +1,6 @@
 package theatre.scenes;
 
+import javafx.animation.FadeTransition;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -35,6 +36,7 @@ import theatre.showingSystem.ShowingSystemCollector;
 import theatre.tools.*;
 import theatre.tools.AccountData.Account;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
@@ -45,7 +47,7 @@ public class MovieDetailController {
     private ArrayList<AnchorPane> reservedSeatList, currentSelectedSeat;
     private AnchorPane warningMessage;
     private Schedule selectedSchedule;
-    private int preTheatre, currentTheatre, currentSchedule;
+    private int preTheatre, currentTheatre;
 
 
     @FXML
@@ -68,7 +70,7 @@ public class MovieDetailController {
             public void run() {
                 title.setText(selectedMovie.getTitle());
                 length.setText("Length: " + selectedMovie.getLength());
-                poster.setImage(new Image(selectedMovie.getPosterLocation()));
+                poster.setImage(new Image(new File(selectedMovie.getPosterLocation()).toURI().toString()));
 
                 if (selectedMovie.getClass() == ShowingMovies.class) {
                     ShowingMovies movie = (ShowingMovies) selectedMovie;
@@ -91,7 +93,6 @@ public class MovieDetailController {
                 }
                 preTheatre = -1;
                 currentTheatre = -1;
-                currentSchedule = -1;
                 reservedSeatList = new ArrayList<>();
                 currentSelectedSeat = new ArrayList<>();
                 showingSystems = ShowingSystemCollector.getShowingSystems();
@@ -169,10 +170,13 @@ public class MovieDetailController {
             detailField.getChildren().add(moreDetail);
             label.setText("Hide detail");
         } else {
-            EffectController.createFadeTransition(detailField.getChildren().get(3), 0.5, 0).play();
-            detailField.getChildren().remove(3);
-            for (Node node : detailField.getChildren()) EffectController.createFadeTransition(node, 0.5, 1).play();
+            int index = selectedMovie instanceof ShowingMovies? 3: 4;
+            FadeTransition fadeTransition = EffectController.createFadeTransition(detailField.getChildren().get(index), 0.5, 0);
+            fadeTransition.play();
+
+            detailField.getChildren().remove(index);
             label.setText("See more detail");
+            for (Node node : detailField.getChildren()) EffectController.createFadeTransition(node, 0.5, 1).play();
         }
     }
 
@@ -181,12 +185,15 @@ public class MovieDetailController {
         AnchorPane groupPoster = (AnchorPane) event.getSource();
         ImageView poster = (ImageView) groupPoster.getChildren().get(0);
         ImageView playIcon = (ImageView) groupPoster.getChildren().get(1);
+        playIcon.setImage(new Image(new File("data/movieData/player_tools_icon/play_icon.png").toURI().toString()));
+
         ColorAdjust colorAdjustImg = (ColorAdjust) poster.getEffect();
         EffectController.createTranslateTimeLine(colorAdjustImg.brightnessProperty(), -0.5, 0.25).play();
         EffectController.createTranslateTimeLine(playIcon.opacityProperty(), 1, 0.25).play();
     }
 
-    @FXML private void mouseExitOnMoviePoster(MouseEvent event) {
+    @FXML
+    private void mouseExitOnMoviePoster(MouseEvent event) {
         AnchorPane groupPoster = (AnchorPane) event.getSource();
         ImageView poster = (ImageView) groupPoster.getChildren().get(0);
         ImageView playIcon = (ImageView) groupPoster.getChildren().get(1);
@@ -260,8 +267,6 @@ public class MovieDetailController {
         preScheduleLabel = currentScheduleLabel;
         currentTheatre = GridPane.getRowIndex(currentScheduleLabel) == null ?
                 0 : GridPane.getRowIndex(currentScheduleLabel);
-        currentSchedule = GridPane.getColumnIndex(currentScheduleLabel) == null ?
-                0 : GridPane.getColumnIndex(currentScheduleLabel);
 
         selectedSchedule = null;
         for (Schedule s : showingSystems[currentTheatre].getSchedules()) {
@@ -395,9 +400,9 @@ public class MovieDetailController {
         PageController.getStackWaringMessages().push(null);
     }
 
-    // *** set objects, were passed from previous page ***//
+    //*** set objects, were passed from previous page ***//
     public void setSelectedMovie(Movies selectedMovie) {
         this.selectedMovie = selectedMovie;
     }
-    // *** set objects, were passed from previous page ***//
+    //*** set objects, were passed from previous page ***//
 }

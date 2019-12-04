@@ -19,6 +19,7 @@ import theatre.tools.AccountData.Account;
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class ReceiptController {
@@ -30,6 +31,9 @@ public class ReceiptController {
     private String startTime;
 
     @FXML
+    Text dateTime;
+
+    @FXML
     AnchorPane mainPane;
 
     @FXML
@@ -37,6 +41,55 @@ public class ReceiptController {
 
     @FXML
     VBox userBox, movieBox, theatreBox;
+
+    @FXML
+    public void initialize() {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                LocalDateTime now = LocalDateTime.now();
+                String time = String.format("%02d:%02d", now.getHour(), now.getMinute());
+                String date = String.format("%02d-%02d-%d", now.getDayOfMonth(), now.getMonthValue(), now.getYear());
+                dateTime.setText(time + " " + date);
+
+                Account account = AccountCollector.getCurrentAccount();
+                String[] dataAcc = {account.getUsername(), account.getFirstName(), account.getLastName(), account.getMail()};
+                String[] dataMovie = {movies.getTitle(), movies.getLength(), movies.getCome_inDate().toString()};
+                String[] dataTheatre = {Integer.toString(no_theatre), showingSystem.getSystemType(), startTime, seats, "", cost + "0 THB"};
+                poster.setImage(new Image(new File(movies.getPosterLocation()).toURI().toString()));
+                for (int i = 0; i < dataAcc.length; i++) {
+                    Text t = ((Text) userBox.getChildren().get(i));
+                    t.setText(t.getText() + dataAcc[i]);
+                }
+
+                for (int i = 0; i < dataTheatre.length; i++) {
+                    Text t = ((Text) theatreBox.getChildren().get(i));
+                    t.setText(t.getText() + dataTheatre[i]);
+                }
+
+                for (int i = 0; i < dataMovie.length; i++) {
+                    Text t = ((Text) movieBox.getChildren().get(i));
+                    t.setText(t.getText() + dataMovie[i]);
+                }
+
+                time = time.replace(':', '-');
+                time = String.format("%s-%02d", time, now.getSecond());
+                String filename= account.getUsername() + "_" + time + "_" + date + ".png";
+                screenShot(filename);
+            }
+        });
+    }
+
+    private void screenShot(String dateTime) {
+        String pathFile = "data/receiptPic/" + dateTime;
+        WritableImage writableImage = mainPane.snapshot(new SnapshotParameters(), null);
+        File file = new File(pathFile);
+        try {
+            ImageIO.write(SwingFXUtils.fromFXImage(writableImage, null), "png", file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void setMovie(ShowingMovies movies) {
         this.movies = movies;
@@ -57,44 +110,5 @@ public class ReceiptController {
 
     public void setCost(double cost) {
         this.cost = cost;
-    }
-
-    @FXML
-    public void initialize() {
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                Account account = AccountCollector.getCurrentAccount();
-                String[] dataAcc = {account.getUsername(), account.getFirstName(), account.getLastName(), account.getMail()};
-                String[] dataMovie = {movies.getTitle(), movies.getLength(), movies.getCome_inDate().toString()};
-                String[] dataTheatre = {Integer.toString(no_theatre), showingSystem.getSystemType(), startTime, seats, "", cost + "0 THB"};
-                poster.setImage(new Image(movies.getPosterLocation()));
-                for (int i = 0; i < dataAcc.length; i++) {
-                    Text t = ((Text) userBox.getChildren().get(i));
-                    t.setText(t.getText() + dataAcc[i]);
-                }
-
-                for (int i = 0; i < dataTheatre.length; i++) {
-                    Text t = ((Text) theatreBox.getChildren().get(i));
-                    t.setText(t.getText() + dataTheatre[i]);
-                }
-
-                for (int i = 0; i < dataMovie.length; i++) {
-                    Text t = ((Text) movieBox.getChildren().get(i));
-                    t.setText(t.getText() + dataMovie[i]);
-                }
-                screenShot();
-            }
-        });
-    }
-
-    private void screenShot() {
-        WritableImage writableImage = mainPane.snapshot(new SnapshotParameters(), null);
-        File file = new File("Receipt.png");
-        try {
-            ImageIO.write(SwingFXUtils.fromFXImage(writableImage, null), "png", file);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

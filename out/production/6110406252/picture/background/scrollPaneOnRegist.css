@@ -1,0 +1,15 @@
+.scroll-pane > .viewport {
+    -fx-background-image: url('register-background.jpg');
+    -fx-background-attachment: fixed;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}
+
+.scroll-pane {
+    -fx-background-image: url('register-background.jpg');
+    -fx-background-attachment: fixed;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}

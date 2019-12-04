@@ -13,6 +13,10 @@ import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import theatre.tools.EffectController;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.net.URISyntaxException;
+
 public class TrailerController {
     @FXML
     MediaView player;
@@ -28,23 +32,18 @@ public class TrailerController {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                playImg = new Image("/movieData/player_tools_icon/play_icon.png");
-                pauseImg = new Image("/movieData/player_tools_icon/pause_icon.png");
+                playImg = new Image(new File("data/movieData/player_tools_icon/play_icon.png").toURI().toString());
+                pauseImg = new Image(new File("data/movieData/player_tools_icon/pause_icon.png").toURI().toString());
                 Stage thisStage = (Stage) player.getScene().getWindow();
                 thisStage.setOnCloseRequest(e -> mediaPlayer.stop());
-                try {
-                    String externalPath = getClass().getResource(path).toExternalForm();
-                    media = new Media(externalPath);
-                    mediaPlayer = new MediaPlayer(media);
-                    DoubleProperty width = player.fitWidthProperty();
-                    DoubleProperty height = player.fitHeightProperty();
-                    width.bind(Bindings.selectDouble(player.sceneProperty(), "width"));
-                    height.bind(Bindings.selectDouble(player.sceneProperty(), "height"));
-                    player.setMediaPlayer(mediaPlayer);
-                    actionImg.setImage(playImg);
-                } catch (NullPointerException e) {
-                    e.printStackTrace();
-                }
+                media = new Media(new File(path).toURI().toString());
+                mediaPlayer = new MediaPlayer(media);
+                DoubleProperty width = player.fitWidthProperty();
+                DoubleProperty height = player.fitHeightProperty();
+                width.bind(Bindings.selectDouble(player.sceneProperty(), "width"));
+                height.bind(Bindings.selectDouble(player.sceneProperty(), "height"));
+                player.setMediaPlayer(mediaPlayer);
+                actionImg.setImage(playImg);
             }
         });
     }

@@ -4,12 +4,9 @@ import theatre.movies.Movies;
 import theatre.showingSystem.Schedule;
 import theatre.tools.DataController;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.*;
 
-public class Account {
+public class Account extends Observable {
     private String username;
     private String password;
     private String firstName;
@@ -78,6 +75,14 @@ public class Account {
         }
     }
 
+    public void topUp(int amount) {
+        balance += amount;
+        DataController.editBalance(username, balance);
+
+        setChanged();
+        notifyObservers();
+    }
+
     public String getMail() {
         return mail;
     }
@@ -115,7 +120,7 @@ public class Account {
         return position;
     }
 
-    private SelectedTheatre getSelectedTheatreByNumber(int theatre) {
+    public SelectedTheatre getSelectedTheatreByNumber(int theatre) {
         for (SelectedTheatre t : selectedTheatres) {
             if (t.getNo_theatre() == theatre) {
                 return t;

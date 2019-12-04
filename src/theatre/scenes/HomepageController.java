@@ -38,7 +38,7 @@ public class HomepageController {
     @FXML
     AnchorPane contentPart, mainPane;
     @FXML
-    Button backButton;
+    Button backButton, csvViewerBtn;
     @FXML
     ScrollPane contentCollector;
 
@@ -73,20 +73,7 @@ public class HomepageController {
             PageController.setLastHomePage(homepageLabel);
             addMockUp();
             showMockUp();
-//            printSchedule();
         });
-    }
-
-    public void printSchedule() {
-        ShowingSystem[] systems = ShowingSystemCollector.getShowingSystems();
-        for (int i = 0; i < systems.length; i++) {
-            System.out.println("Theatre: " + i);
-            ArrayList<Schedule> schedules = systems[i].getSchedules();
-            for (Schedule s : schedules) {
-                System.out.println("\t" + s.getStartTime());
-                System.out.println("\t" + s.getReservedPositionSeat());
-            }
-        }
     }
 
     @FXML
@@ -248,9 +235,10 @@ public class HomepageController {
 
     @FXML
     private void viewCSVFile(ActionEvent event) {
+        csvViewerBtn.setDisable(true);
         StringBuilder content = new StringBuilder();
         try {
-            FileReader reader = new FileReader(new File("src/accountData/BookingData.csv"));
+            FileReader reader = new FileReader(new File("data/accountData/BookingData.csv"));
             BufferedReader bufferedReader = new BufferedReader(reader);
             String line;
             while ((line = bufferedReader.readLine()) != null) {
@@ -261,20 +249,25 @@ public class HomepageController {
         }
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("readCSVSecene.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("readCSVScene.fxml"));
             AnchorPane r = loader.load();
             TextArea area = (TextArea) r.getChildren().get(0);
+            area.setEditable(false);
             area.setText(content.toString());
+
             Stage stage = new Stage();
             stage.setScene(new Scene(r));
+            stage.setOnCloseRequest(e -> csvViewerBtn.setDisable(false));
+            stage.setAlwaysOnTop(true);
+
             ViewCSVController viewCSVController = loader.getController();
             viewCSVController.setContent(content.toString());
+            stage.setTitle("CSV Viewer");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 
     //create Mock up as Anchorpane which contains image seat and position seat label and collect as ArrayList.
     private void addMockUp() {

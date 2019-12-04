@@ -9,17 +9,18 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.Glow;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+
+import java.io.File;
+import java.net.URISyntaxException;
 
 public class NodeCreator {
     public static AnchorPane createAnchorPane(double width, double height, Node ...nodes) {
@@ -32,10 +33,17 @@ public class NodeCreator {
     }
 
     public static ImageView createImageView(double width, double height, String path, boolean preserveRatio) {
-        ImageView imageView = new ImageView(path);
+        ImageView imageView = new ImageView();
         imageView.setFitWidth(width);
         imageView.setFitHeight(height);
         imageView.setPreserveRatio(preserveRatio);
+        try {
+            imageView.setImage(new Image(NodeCreator.class.getResource(path).toURI().toString()));
+        } catch (NullPointerException e) {
+            imageView.setImage(new Image(new File(path).toURI().toString()));
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
 
         return imageView;
     }
@@ -57,9 +65,9 @@ public class NodeCreator {
     }
 
     public static AnchorPane createSeatIcon(double imgSize, String position, String pathImg) {
-        ImageView seatImg = NodeCreator.createImageView(imgSize, imgSize, pathImg, true);
-        Label seatPosition = NodeCreator.createLabel(position, 18, "#ffffff");
-        NodeCreator.setAlignmentNodeOnAnchorPane(seatPosition, 29.,0.,4.,0.);
+        ImageView seatImg = createImageView(imgSize, imgSize, pathImg, true);
+        Label seatPosition = createLabel(position, 18, "#ffffff");
+        setAlignmentNodeOnAnchorPane(seatPosition, 29.,0.,4.,0.);
         seatPosition.setEffect(new Glow(0.5));
         AnchorPane groupImg = new AnchorPane(seatImg, seatPosition);
         groupImg.setCursor(Cursor.HAND);

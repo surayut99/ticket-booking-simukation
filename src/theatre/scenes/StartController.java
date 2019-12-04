@@ -6,8 +6,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -82,7 +85,7 @@ public class StartController {
     private void actionOnLogInButton(ActionEvent event) {
         String inputUsername = username.getText(), inputPassword = password.getText();
 
-        if (inputUsername.equals("") || inputPassword.equals("")) {
+        if (inputUsername == null || inputPassword == null) {
             warningLogInMessage.setText("Please fill in your information before logging in.");
             showWarningLogInMessage();
             return;
@@ -108,10 +111,11 @@ public class StartController {
     private void loadNextPage(String filename) {
         root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource(filename));
+             root = FXMLLoader.load(getClass().getResource(filename));
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         mainPane.getChildren().add(root);
         root.prefWidthProperty().bind(mainPane.widthProperty());
         root.prefHeightProperty().bind(mainPane.heightProperty());

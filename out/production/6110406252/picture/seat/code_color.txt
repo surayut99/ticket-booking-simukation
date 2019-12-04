@@ -1,7 +1,0 @@
-normal: #650303, #ff0000;
-premium: #2d0a33, #cc1ae8;
-vip: #732619, #ff7c00;
-couple_standard: #d31111, #cf07a7;
-couple_premium: #d39511, #cf07a7;
-couple_vip: #d57313, #cf07a7;
-

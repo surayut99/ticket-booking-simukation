@@ -4,16 +4,16 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 
 public class ViewCSVController {
+    private String content;
+
     @FXML
     TextArea area;
 
-    private String content;
+    @FXML public void initialize() {
+        area.setText(content);
+    }
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    @FXML public void initialize() {
-        area.setText(content);
     }
 }
