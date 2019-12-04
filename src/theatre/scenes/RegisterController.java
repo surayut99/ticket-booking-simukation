@@ -37,30 +37,15 @@ public class RegisterController {
     private void initialize() {
         backButton.setOnAction(this::actionOnBackButton);
         PageController.setMainShowContent(mainScroll);
-//        ScrollPane scrollPane = new ScrollPane();
-//        Parent parent = showContent.getParent();
-//        AnchorPane anchorPane = (AnchorPane) parent;
-//        anchorPane.getChildren().add(scrollPane);
-//        scrollPane.setContent(showContent);
-//        scrollPane.prefWidthProperty().bind(anchorPane.widthProperty());
-//        scrollPane.prefHeightProperty().bind(anchorPane.heightProperty());
-//        showContent.prefWidthProperty().bind(scrollPane.widthProperty());
-//        showContent.prefHeightProperty().bind(scrollPane.heightProperty());
-//
-//        PageController.setMainShowContent(scrollPane);
-//        scrollPane.prefHeightProperty().bind(showContent.heightProperty());
-//        scrollPane.prefWidthProperty().bind(showContent.widthProperty());
     }
 
     @FXML
     private void actionOnBackButton(ActionEvent event) {
         isFilledBlank();
-//        AnchorPane thisPage = (AnchorPane) PageController.getStackPages().peek();
         AnchorPane peekMessage = PageController.getStackWaringMessages().peek();
         if (peekMessage == null) {
             backFunction();
         } else {
-//            thisPage.getChildren().add(peekMessage);
             WarningController.showWarning(peekMessage);
             showContent.setDisable(true);
             showContent.setEffect(new ColorAdjust(0, 0, -0.5, 0));
@@ -73,7 +58,6 @@ public class RegisterController {
     private void actionOnChoiceWarning(ActionEvent event) {
         String choice = ((Button) event.getSource()).getText();
         AnchorPane thisPage = (AnchorPane) PageController.getStackPages().peek();
-//        thisPage.getChildren().remove(PageController.getStackWaringMessages().peek());
         WarningController.hideWarning();
         thisPage.setEffect(null);
         switch (choice) {
